@@ -5,7 +5,7 @@
 **A full-stack website audit â€” technical SEO, LLM-readiness, and marketing effectiveness â€” in a single deterministic engine.**
 
 [![Powered by SiteAuditPro](https://img.shields.io/badge/Powered_by-SiteAuditPro-00F5D4?labelColor=06080C)](https://siteauditpro.online)
-[![Production-tested since 2025](https://img.shields.io/badge/Production_tested_since-2025-success?logo=checkmarx&logoColor=white)](https://siteauditpro.online)
+[![Production-tested since 2025](https://img.shields.io/badge/Production_tested_since-2025-success)](https://siteauditpro.online)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL_3.0-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/KaiMOdev/trivium?style=flat&label=Stars&logo=github)](https://github.com/KaiMOdev/trivium/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/KaiMOdev/trivium?style=flat&label=Forks&logo=github)](https://github.com/KaiMOdev/trivium/network/members)
