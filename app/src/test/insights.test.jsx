@@ -173,10 +173,7 @@ describe("InsightsPanel", () => {
     expect(llmFilter).toBeUndefined();
   });
 
-  test("free tier shows upgrade banner", () => {
-    render(<InsightsPanel results={mockResults} scores={mockScores} tier="free" />);
-    expect(screen.getByText(/Unlock AI Search, Marketing/)).toBeInTheDocument();
-  });
+  // OSS build has no tier system, so no upgrade banner renders. Test removed.
 
   test("pro tier does not show upgrade banner", () => {
     render(<InsightsPanel results={mockResults} scores={mockScores} tier="pro" />);
