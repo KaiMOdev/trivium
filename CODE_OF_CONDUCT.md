@@ -2,7 +2,7 @@
 
 This project follows the [Contributor Covenant v2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
 
-In short: be respectful, be kind, assume good faith. Harassment, discrimination, and personal attacks are not tolerated. Disagree about technical decisions â€” never about people.
+In short: be respectful, be kind, assume good faith. Harassment, discrimination, and personal attacks are not tolerated. Disagree about technical decisions — never about people.
 
 ## Scope
 
