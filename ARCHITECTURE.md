@@ -41,12 +41,7 @@ trivium/
 │   │   ├── meta.js                   Meta Business (OAuth)
 │   │   └── oauth-utils.js            Shared OAuth helpers
 │   ├── routes/
-│   │   ├── ai.js                     /api/ai/suggestions, /api/ai/summary
-│   │   ├── audit.js                  /api/audit/fix
 │   │   └── integrations.js           OAuth flows for all integrations
-│   ├── services/
-│   │   ├── ai.js                     Anthropic client, prompts, response cache
-│   │   └── audit.js                  AI-powered fix-suggestion generator
 │   ├── utils/
 │   │   ├── pageType.js               Page-type classifier
 │   │   ├── readability.js            Flesch-Kincaid scoring
@@ -65,10 +60,9 @@ trivium/
 4. `detectPageType(pageData)` classifies the page (`homepage`, `article`, `product`, `service`, `legal`, `utility`, `landing`, `faq`, `auth`, `gallery`, `support`, `generic`). The classifier is in `api/utils/pageType.js`.
 5. `runSeoChecks`, `runLlmChecks`, `runMarketingChecks` each run their suite. Page-type-aware skipping happens via `api/config/checkApplicability.js` — irrelevant checks are returned with `status: "na"` so they don't drag the score.
 6. CMS detection (`plugins/detect.js`) runs in parallel. If WordPress / Shopify / AEM is detected, the platform-specific analyzer pulls extra signals (REST API, theme files, etc.).
-7. If `ANTHROPIC_API_KEY` is set, `classifyAndAudit()` from `services/ai.js` runs four AI-powered checks (CTA relevance, value-prop clarity, content-audience fit, brand consistency) in parallel with the deterministic checks.
-8. OAuth integrations (GSC, GA4, Adobe Analytics, Meta) fetch their data if connected.
-9. Per-category weighted scores are computed (each check has a weight 1–3 based on severity).
-10. Result is returned. For `/api/scan/site` and `/api/audit/discover`, results stream as NDJSON one event per page.
+7. OAuth integrations (GSC, GA4, Adobe Analytics, Meta) fetch their data if connected.
+8. Per-category weighted scores are computed (each check has a weight 1–3 based on severity).
+9. Result is returned. For `/api/scan/site` and `/api/audit/discover`, results stream as NDJSON one event per page.
 
 ## Check data shapes
 
@@ -86,18 +80,11 @@ Status is derived from score:
 - `< 45` → fail
 - `null` or explicit `status: "na"` → not applicable (excluded from scoring)
 
-## AI service
+## AI features
 
-`api/services/ai.js` exports:
+There are none. Every check in the open-source build is a deterministic heuristic — no third-party language model calls, no token costs, no API keys to manage.
 
-- `generateFixSuggestion(check, meta, classification)` — used by `/api/ai/suggestions`
-- `generateAuditSummary(scores, worstChecks, meta, bestChecks, classification)` — used by `/api/ai/summary`
-- `classifyAndAudit(signals, siteHint)` — runs during every scan when AI is enabled
-- `isAIEnabled()` — boolean for runtime gating
-
-All three are no-ops when `ANTHROPIC_API_KEY` is missing — they return `{ error: "AI service not configured" }` (the route handlers translate this to HTTP 503).
-
-There's an in-memory response cache (LRU, 5000 entries, 7-day TTL). It's lost on restart — for OSS, that's fine.
+AI-powered features (narrative audit summary, per-check fix suggestions, page classification) live in the commercial product at https://siteauditpro.online. The commercial layer sits on top of this same engine and adds Anthropic-backed analysis.
 
 ## Page-type detection
 
@@ -119,6 +106,7 @@ The `app/src/contexts/AuthContext.jsx` and `api/middleware/auth.js` files exist 
 
 ## What's intentionally not here
 
+- AI / LLM features — narrative summaries, fix suggestions, page classification. These belong to the commercial product.
 - `fly.toml`, `vercel.json` — infrastructure choices are yours.
 - Marketing site (`demo-site/`) — separate from the engine.
 - WordPress companion plugin — separate codebase.

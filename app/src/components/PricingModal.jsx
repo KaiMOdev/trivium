@@ -24,14 +24,10 @@ export default function PricingModal({ onClose }) {
           You're running the open-source build
         </h2>
         <p style={{ color: theme.textMuted, lineHeight: 1.6, marginBottom: 16 }}>
-          Every feature is available — no paid tiers in this version.
+          Every check in this build is deterministic and free — no paid tiers, no third-party AI calls.
         </p>
         <p style={{ color: theme.textMuted, lineHeight: 1.6, marginBottom: 24 }}>
-          AI-powered suggestions and summaries require an Anthropic API key. Set
-          <code style={{ background: theme.bg, padding: "2px 6px", borderRadius: 4, margin: "0 4px" }}>
-            ANTHROPIC_API_KEY
-          </code>
-          in <code style={{ background: theme.bg, padding: "2px 6px", borderRadius: 4 }}>api/.env</code> to enable them.
+          AI-powered narrative summaries and per-check fix suggestions are part of the hosted commercial product at <a href="https://siteauditpro.online" target="_blank" rel="noopener noreferrer" style={{ color: theme.accent }}>siteauditpro.online</a>.
         </p>
         <button
           onClick={onClose}

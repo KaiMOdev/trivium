@@ -27,10 +27,7 @@ const { detectPageType } = require("./utils/pageType");
 const { debug } = require("./utils/debug");
 const { fetchTextFile, checkExists } = require("./utils/fetch-helpers");
 const { OSS_USER_ID } = require("./middleware/auth");
-const aiRoutes = require("./routes/ai");
-const auditRoutes = require("./routes/audit");
 const { createIntegrationsRouter } = require("./routes/integrations");
-const { classifyAndAudit, isAIEnabled } = require("./services/ai");
 const { getPageLimit, CONCURRENCY, CRAWL_DELAY_MS, getAuditPageLimit, getAuditDepthLimit } = require("./config/tiers");
 
 const app = express();
@@ -67,8 +64,6 @@ app.use(cors({
 }));
 app.use(express.json({ limit: "1mb" }));
 
-app.use("/api/ai", aiRoutes);
-app.use("/api/audit", auditRoutes);
 app.use("/api/integrations", createIntegrationsRouter({ oauthLimiter }));
 
 if (process.env.NODE_ENV === "production") {
@@ -108,26 +103,6 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
   const llmResults = runLlmChecks(pageData, robotsTxt);
   const marketingResults = runMarketingChecks(pageData);
 
-  const skipPageTypes = ["legal", "auth", "utility"];
-  const skipForPageType = skipPageTypes.includes(pageData.pageType);
-
-  const ctaCheck = marketingResults.find(r => r.label === "CTA Effectiveness");
-  const ctaTexts = ctaCheck?.items?.length ? ctaCheck.items.slice(0, 5) : [];
-
-  const classifyPromise = (!isAIEnabled() || skipForPageType)
-    ? Promise.resolve(null)
-    : classifyAndAudit({
-        url: targetUrl,
-        pageType: pageData.pageType,
-        title: pageData.title,
-        metaDescription: pageData.metaDescription,
-        h1: (pageData.h1s || [])[0] || "",
-        h2s: (pageData.headings?.h2 || []).slice(0, 10),
-        ctaTexts,
-        schemaTypes: (pageData.jsonLdEntities || []).flatMap(e => [].concat(e["@type"] || e.type || [])).filter(Boolean).map(String),
-        textSample: (pageData.visibleText || "").slice(0, 1500),
-      }, siteHint);
-
   debug("scanUrl", "quickPlatform.cms:", quickPlatform.cms);
   const [platform, wordpress, shopify, aem, gsc, ga4] = await Promise.all([
     quickPlatform.cms && quickPlatform.cms.confidence < 80
@@ -155,8 +130,6 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
   const metaBusiness = cachedMeta !== undefined
     ? cachedMeta
     : await analyzeMeta(targetUrl, userId);
-
-  const classifyResult = await classifyPromise;
 
   debug("scanUrl", "shopify result:", shopify ? "available" : shopify);
   debug("scanUrl", "metaBusiness result:", metaBusiness?.available, metaBusiness?.reason || "");
@@ -188,7 +161,6 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
     "AI Bot Access (Detailed)": 3, "Content Freshness": 2,
     "llms.txt File": 1, "Content Accessibility": 2,
     "Question Headings": 1, "Source Citations": 1, "Definition Clarity": 1,
-    "Content-Audience Fit": 2,
   };
   const MARKETING_WEIGHTS = {
     "Value Proposition": 3, "CTA Effectiveness": 3,
@@ -202,9 +174,6 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
     "Benefit vs. Feature Language": 2, "Urgency & Scarcity": 1,
     "Emotional Trigger Words": 1, "Headline Formula Quality": 2,
     "Above-Fold Messaging": 3, "Social Proof Signals": 2,
-    "CTA Relevance": 2,
-    "Value Prop Clarity": 2,
-    "Brand Consistency": 2,
   };
   const META_WEIGHTS = {
     "Pixel Installation": 3, "Event Coverage": 3,
@@ -224,33 +193,6 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
     }
     return Math.round(weightedSum / totalWeight);
   };
-
-  const pushAiCheck = (arr, label, checkData) => {
-    if (!checkData) return;
-    arr.push({
-      label,
-      score: checkData.score,
-      detail: checkData.detail,
-      status: checkData.status || (checkData.score === null ? "na" : undefined),
-      aiPowered: true,
-    });
-  };
-
-  if (classifyResult?.checks) {
-    const c = classifyResult.checks;
-    pushAiCheck(marketingResults, "CTA Relevance", c.ctaRelevance);
-    pushAiCheck(marketingResults, "Value Prop Clarity", c.valuePropClarity);
-    pushAiCheck(marketingResults, "Brand Consistency", c.brandConsistency);
-    pushAiCheck(llmResults, "Content-Audience Fit", c.contentAudienceFit);
-  } else if (!skipForPageType) {
-    const detail = isAIEnabled()
-      ? "AI analysis temporarily unavailable — try again later"
-      : "Set ANTHROPIC_API_KEY to enable AI-powered checks";
-    marketingResults.push({ label: "CTA Relevance", score: null, detail, status: "na", aiPowered: true });
-    marketingResults.push({ label: "Value Prop Clarity", score: null, detail, status: "na", aiPowered: true });
-    marketingResults.push({ label: "Brand Consistency", score: null, detail, status: "na", aiPowered: true });
-    llmResults.push({ label: "Content-Audience Fit", score: null, detail, status: "na", aiPowered: true });
-  }
 
   const deriveMaturityLevel = (seoScore, llmScore, mktScore) => {
     const avg = (seoScore + llmScore + mktScore) / 3;
@@ -666,7 +608,6 @@ app.get("/api/health", (req, res) => {
   res.json({
     status: "ok",
     version: "1.0.0",
-    aiEnabled: isAIEnabled(),
   });
 });
 

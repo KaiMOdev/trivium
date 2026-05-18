@@ -14,22 +14,9 @@ npm run dev
 
 This starts the API on `http://localhost:3001` and the frontend on `http://localhost:5173`. The Vite dev server proxies `/api/*` to the backend.
 
-The scanner works against any public URL out of the box. AI features, OAuth integrations, and PageSpeed-with-quota are opt-in.
+The scanner works against any public URL out of the box. OAuth integrations and PageSpeed-with-quota are opt-in.
 
-## Enabling AI features
-
-AI suggestions and summaries call Anthropic's Claude API directly. You supply the key:
-
-1. Sign up at https://console.anthropic.com/ and create an API key.
-2. Add it to `api/.env`:
-   ```
-   ANTHROPIC_API_KEY=sk-ant-...
-   ```
-3. Restart `npm run dev:api`.
-
-`GET /api/health` returns `{ "aiEnabled": true }` when configured. The frontend uses this flag to show/hide the AI panels.
-
-You're billed by Anthropic per token; the default model is `claude-sonnet-4-6`. Override via `AI_MODEL` in `api/.env`.
+AI-powered narrative summaries and per-check fix suggestions are not part of the OSS build — they live in the commercial product at https://siteauditpro.online. The open-source engine is pure deterministic heuristics.
 
 ## Enabling Google PageSpeed Insights
 

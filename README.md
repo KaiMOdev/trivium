@@ -6,8 +6,8 @@ Traditional SEO tools answer "will Google index this page?". Trivium also answer
 
 - Can a large language model *extract a clean answer* from your content?
 - Is your structured data rich enough for an LLM to cite you as a source?
-- Is your value proposition specific enough that an AI summary won't strip it to generic mush?
 - Are you accessible to the new generation of AI crawlers (`GPTBot`, `ClaudeBot`, `PerplexityBot`)?
+- Does your `llms.txt` exist and point AI agents at the right content?
 
 The classical [trivium](https://en.wikipedia.org/wiki/Trivium) was grammar, logic, and rhetoric. Trivium audits the same three:
 
@@ -17,7 +17,9 @@ The classical [trivium](https://en.wikipedia.org/wiki/Trivium) was grammar, logi
 
 Site-type aware — an e-commerce product page is graded differently from a B2B SaaS landing page.
 
-A hosted version with team features is available at https://siteauditpro.online — this repository is the open-source engine that powers it.
+Every check is a deterministic heuristic — no AI, no API calls to third-party language models. Trivium runs entirely offline against any URL.
+
+A hosted version with AI-powered fix suggestions and team features is available at https://siteauditpro.online — the commercial product extends this open-source engine with LLM-generated narrative and per-check fix recommendations.
 
 ## Quick start
 
@@ -31,17 +33,6 @@ npm run dev
 
 Open http://localhost:5173 and scan any URL. No signup, no database, no external services for the core scanner.
 
-## Optional: enable AI suggestions (bring your own key)
-
-AI-powered fix suggestions and audit summaries call the [Anthropic API](https://console.anthropic.com/) directly. You supply the key, you pay Anthropic for usage — Trivium doesn't sit in the middle.
-
-```bash
-# in api/.env
-ANTHROPIC_API_KEY=sk-ant-...
-```
-
-Restart the API and the AI panels light up. Without a key, the deterministic checks still run and you get a full audit minus the LLM-generated narrative.
-
 ## Optional: connect Search Console / GA4 / Adobe / Meta
 
 Each integration is independent. Register an OAuth app with the provider, add the credentials to `api/.env`, and connect from the Integrations panel. Step-by-step in [`SETUP.md`](SETUP.md).
@@ -52,16 +43,14 @@ Each integration is independent. Register an OAuth app with the provider, add th
 | --- | --- |
 | `app/` | React 19 frontend (Vite) |
 | `api/` | Express backend |
-| `api/checks/` | 29 SEO, 19 LLM-readiness, 20 marketing checks |
+| `api/checks/` | 29 SEO, 19 LLM-readiness, 20 marketing checks (all deterministic) |
 | `api/plugins/` | CMS detection + OAuth integrations |
-| `api/services/ai.js` | Anthropic client and prompts |
 | `ARCHITECTURE.md` | Deeper code tour |
 
 ## Tech stack
 
 - React 19 + Vite, no UI library — inline styles, dark theme
 - Node 22 + Express 5
-- Anthropic SDK for AI features
 - Cheerio for HTML parsing
 - Google PageSpeed Insights for Core Web Vitals
 
