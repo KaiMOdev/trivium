@@ -584,7 +584,7 @@ export default function SiteAuditApp() {
             fontWeight: 700,
             letterSpacing: "-0.02em",
           }}>
-            SiteAudit<span style={{ color: theme.accent }}>Pro</span>
+            Trivium
           </span>
         </div>
 
@@ -592,7 +592,6 @@ export default function SiteAuditApp() {
         <nav className="sap-header-nav" style={{ display: "flex", gap: 2 }}>
           {[
             { id: "scan", label: "Scan", icon: "◎" },
-            { id: "integrations", label: "Integrations", icon: "⬡", action: () => { setAccountInitialSection("integrations"); setView("account"); } },
             { id: "results", label: "Report", icon: "◧", disabled: !showResults },
             { id: "audit", label: "Page Audit", icon: "✎" },
           ].map(tab => (
@@ -635,21 +634,8 @@ export default function SiteAuditApp() {
           <span style={{ fontSize: 15 }}>?</span> Help
         </button>
 
-        {/* Tier switcher + Pricing */}
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          {/* Static tier badge */}
-          <div className="sap-header-tier" style={{
-            display: "flex", alignItems: "center", gap: 6,
-            padding: "5px 14px", borderRadius: 7,
-            background: tc.bg || "rgba(255,255,255,0.05)",
-            border: `1px solid ${tc.border}`,
-          }}>
-            <span style={{
-              fontSize: 10, fontWeight: 700, letterSpacing: "0.06em",
-              fontFamily: theme.fontMono, color: tc.color,
-            }}>{tc.icon} {tc.label}</span>
-          </div>
-          <a className="sap-header-website" href="https://github.com" target="_blank" rel="noopener noreferrer" style={{
+          <a className="sap-header-website" href="https://github.com/KaiMOdev/trivium" target="_blank" rel="noopener noreferrer" style={{
             padding: "5px 14px", borderRadius: 8,
             border: `1px solid ${theme.cardBorder}`,
             background: "transparent", color: theme.textMuted,
@@ -657,118 +643,7 @@ export default function SiteAuditApp() {
             fontFamily: theme.fontBody,
             transition: "all 0.2s",
             textDecoration: "none",
-          }}>Website</a>
-          <button className="sap-header-pricing" onClick={() => setShowPricing(true)} style={{
-            padding: "5px 14px", borderRadius: 8,
-            border: `1px solid ${theme.cardBorder}`,
-            background: "transparent", color: theme.textMuted,
-            fontSize: 11, fontWeight: 500, cursor: "pointer",
-            fontFamily: theme.fontBody,
-            transition: "all 0.2s",
-          }}>Pricing</button>
-
-          {/* User menu */}
-          <div style={{ position: "relative" }}>
-            <button
-              onClick={() => setShowUserMenu(!showUserMenu)}
-              style={{
-                width: 32, height: 32, borderRadius: "50%",
-                border: `1px solid ${theme.cardBorder}`,
-                background: user?.user_metadata?.avatar_url
-                  ? `url(${user.user_metadata.avatar_url}) center/cover`
-                  : `linear-gradient(135deg, ${theme.accent}, ${theme.violet})`,
-                cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                color: theme.bg, fontSize: 12, fontWeight: 700,
-                fontFamily: theme.fontDisplay,
-                transition: "all 0.2s",
-              }}
-            >
-              {!user?.user_metadata?.avatar_url && (
-                (user?.email?.[0] || "U").toUpperCase()
-              )}
-            </button>
-            {showUserMenu && (
-              <>
-                <div
-                  onClick={() => setShowUserMenu(false)}
-                  style={{ position: "fixed", inset: 0, zIndex: 98 }}
-                />
-                <div className="sap-user-menu" style={{
-                  position: "absolute", right: 0, top: 40, zIndex: 99,
-                  background: theme.card, border: `1px solid ${theme.cardBorder}`,
-                  borderRadius: 12, padding: 8, minWidth: 200,
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
-                }}>
-                  <div style={{
-                    padding: "10px 12px",
-                    borderBottom: `1px solid ${theme.cardBorder}`,
-                    marginBottom: 4,
-                  }}>
-                    <div style={{
-                      fontSize: 13, fontWeight: 600, color: theme.text,
-                      fontFamily: theme.fontBody,
-                    }}>
-                      {user?.user_metadata?.full_name || user?.email?.split("@")[0] || "User"}
-                    </div>
-                    <div style={{
-                      fontSize: 11, color: theme.textMuted,
-                      fontFamily: theme.fontMono,
-                      marginTop: 2, overflow: "hidden",
-                      textOverflow: "ellipsis", whiteSpace: "nowrap",
-                    }}>
-                      {user?.email}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => { setShowUserMenu(false); setView("account"); }}
-                    style={{
-                      width: "100%", padding: "8px 12px",
-                      background: "transparent", border: "none",
-                      borderRadius: 8, color: theme.text,
-                      fontSize: 12, fontWeight: 500, cursor: "pointer",
-                      fontFamily: theme.fontBody, textAlign: "left",
-                      transition: "background 0.15s",
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.03)"}
-                    onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
-                  >
-                    ⚙ Account Settings
-                  </button>
-                  <button
-                    onClick={() => { setSupportInitialSection("my-tickets"); setView("support"); setShowUserMenu(false); }}
-                    style={{
-                      width: "100%", padding: "8px 12px",
-                      background: "transparent", border: "none",
-                      borderRadius: 8, color: theme.text,
-                      fontSize: 12, fontWeight: 500, cursor: "pointer",
-                      fontFamily: theme.fontBody, textAlign: "left",
-                      transition: "background 0.15s",
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.03)"}
-                    onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
-                  >
-                    🎫 Support
-                  </button>
-                  <button
-                    onClick={() => { setShowUserMenu(false); signOut(); }}
-                    style={{
-                      width: "100%", padding: "8px 12px",
-                      background: "transparent", border: "none",
-                      borderRadius: 8, color: theme.danger,
-                      fontSize: 12, fontWeight: 500, cursor: "pointer",
-                      fontFamily: theme.fontBody, textAlign: "left",
-                      transition: "background 0.15s",
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = theme.dangerGlow}
-                    onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
-                  >
-                    Sign out
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
+          }}>GitHub</a>
         </div>
       </header>
 
@@ -777,12 +652,9 @@ export default function SiteAuditApp() {
         <div className="sap-mobile-menu" style={{ display: "none" }}>
           {[
             { id: "scan", label: "◎ Scan", action: () => setView("scan") },
-            { id: "integrations", label: "⬡ Integrations", action: () => { setAccountInitialSection("integrations"); setView("account"); } },
             { id: "results", label: "◧ Report", disabled: !showResults, action: () => setView("results") },
             { id: "audit", label: "✎ Page Audit", action: () => setView("audit") },
             { id: "help", label: "? Help", action: () => { setSupportInitialSection("knowledge-base"); setView("support"); } },
-            { id: "pricing", label: "Pricing", action: () => setShowPricing(true) },
-            { id: "account", label: "⚙ Account", action: () => setView("account") },
           ].map(item => (
             <button
               key={item.id}
