@@ -2,7 +2,7 @@
 
 # Trivium
 
-**A full-stack website audit — technical SEO, LLM-readiness, and marketing effectiveness — in a single deterministic engine.**
+**A full-stack website audit â€” technical SEO, LLM-readiness, and marketing effectiveness â€” in a single deterministic engine.**
 
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL_3.0-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/KaiMOdev/trivium?style=flat&label=Stars&logo=github)](https://github.com/KaiMOdev/trivium/stargazers)
@@ -22,14 +22,14 @@
 [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![Awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg)](https://github.com/KaiMOdev/trivium)
 
-🌐 **[Hosted version](https://siteauditpro.online)** · 📚 **[Architecture](ARCHITECTURE.md)** · ⚙️ **[Setup](SETUP.md)** · 🤝 **[Contributing](CONTRIBUTING.md)** · 🏢 **[Lams IT Solutions](https://lamsitsolutions.com)**
+ðŸŒ **[Hosted version](https://siteauditpro.online)** Â· ðŸ“š **[Architecture](ARCHITECTURE.md)** Â· âš™ï¸ **[Setup](SETUP.md)** Â· ðŸ¤ **[Contributing](CONTRIBUTING.md)** Â· ðŸ¢ **[Lams IT Solutions](https://lamsitsolutions.be)**
 
 </div>
 
 ---
 
 > [!TIP]
-> Try Trivium without installing anything — the hosted version at **[siteauditpro.online](https://siteauditpro.online)** runs the same engine plus AI-powered summaries and OAuth integrations.
+> Try Trivium without installing anything â€” the hosted version at **[siteauditpro.online](https://siteauditpro.online)** runs the same engine plus AI-powered summaries and OAuth integrations.
 
 ---
 
@@ -59,7 +59,6 @@
 - [License](#license)
 - [Commercial Use](#commercial-use)
 - [Hosted Version](#hosted-version)
-- [Star History](#star-history)
 - [Contributors](#contributors)
 - [Acknowledgements](#acknowledgements)
 - [Maintainer](#maintainer)
@@ -68,7 +67,7 @@
 
 ## About
 
-Trivium is a self-contained website audit engine designed for the AI-search era. It grades any URL against three orthogonal axes — technical SEO, LLM-readiness, and marketing effectiveness — and produces a structured, page-type-aware report with no signup and no external API calls.
+Trivium is a self-contained website audit engine designed for the AI-search era. It grades any URL against three orthogonal axes â€” technical SEO, LLM-readiness, and marketing effectiveness â€” and produces a structured, page-type-aware report with no signup and no external API calls.
 
 The name comes from the classical [trivium](https://en.wikipedia.org/wiki/Trivium): grammar, logic, and rhetoric. Each pillar maps to one dimension of how a webpage performs in the modern discovery landscape.
 
@@ -76,65 +75,65 @@ The name comes from the classical [trivium](https://en.wikipedia.org/wiki/Triviu
 
 Most audit tools answer one of these questions:
 
-- **Lighthouse / PageSpeed** — Is the page fast?
-- **Screaming Frog / Sitebulb** — Is the page indexable?
-- **Ahrefs / SEMrush** — How does the page rank?
+- **Lighthouse / PageSpeed** â€” Is the page fast?
+- **Screaming Frog / Sitebulb** â€” Is the page indexable?
+- **Ahrefs / SEMrush** â€” How does the page rank?
 
 Trivium asks a different one: **Is this page ready for how people actually find content in 2026?**
 
 That includes Google, but it also includes ChatGPT, Claude, Perplexity, Google AI Overviews, and the rest of the post-keyword search surface. It includes whether your value proposition is specific enough for a human to convert *and* clear enough for an LLM to cite.
 
-And it does all of it deterministically — no AI inference, no API keys, no third-party black boxes. Every score is reproducible from the page's HTML.
+And it does all of it deterministically â€” no AI inference, no API keys, no third-party black boxes. Every score is reproducible from the page's HTML.
 
 ## How It Compares
 
 | | Trivium | Lighthouse | Screaming Frog | Ahrefs / SEMrush |
 | --- | --- | --- | --- | --- |
-| Technical SEO checks | ✅ 29 | ⚠️ ~10 | ✅ ~100 | ✅ Many |
-| LLM-readiness checks | ✅ **19** | ❌ | ❌ | ⚠️ Limited |
-| Marketing / conversion checks | ✅ **20** | ❌ | ❌ | ⚠️ Limited |
-| Page-type aware grading | ✅ | ❌ | ❌ | ❌ |
-| Core Web Vitals | ✅ (via PSI) | ✅ Native | ✅ (via PSI) | ✅ |
-| Multi-page crawl | ✅ | ❌ | ✅ | ✅ |
-| CMS detection + enrichment | ✅ | ❌ | ⚠️ | ⚠️ |
-| Runs offline | ✅ | ✅ | ✅ | ❌ |
-| Open source | ✅ AGPL-3.0 | ✅ Apache-2.0 | ❌ Proprietary | ❌ Proprietary |
-| Free for any use | ✅ | ✅ | ⚠️ Limited free tier | ❌ $99+/mo |
-| Self-hostable | ✅ | N/A | N/A | ❌ |
+| Technical SEO checks | âœ… 29 | âš ï¸ ~10 | âœ… ~100 | âœ… Many |
+| LLM-readiness checks | âœ… **19** | âŒ | âŒ | âš ï¸ Limited |
+| Marketing / conversion checks | âœ… **20** | âŒ | âŒ | âš ï¸ Limited |
+| Page-type aware grading | âœ… | âŒ | âŒ | âŒ |
+| Core Web Vitals | âœ… (via PSI) | âœ… Native | âœ… (via PSI) | âœ… |
+| Multi-page crawl | âœ… | âŒ | âœ… | âœ… |
+| CMS detection + enrichment | âœ… | âŒ | âš ï¸ | âš ï¸ |
+| Runs offline | âœ… | âœ… | âœ… | âŒ |
+| Open source | âœ… AGPL-3.0 | âœ… Apache-2.0 | âŒ Proprietary | âŒ Proprietary |
+| Free for any use | âœ… | âœ… | âš ï¸ Limited free tier | âŒ $99+/mo |
+| Self-hostable | âœ… | N/A | N/A | âŒ |
 
-Trivium is most directly complementary to **Lighthouse** — it uses PageSpeed data and adds LLM-readiness + marketing layers on top.
+Trivium is most directly complementary to **Lighthouse** â€” it uses PageSpeed data and adds LLM-readiness + marketing layers on top.
 
 ## The Three Pillars
 
-### 🔧 Grammar — Technical SEO (29 checks)
+### ðŸ”§ Grammar â€” Technical SEO (29 checks)
 
 **Is the page well-formed and indexable?**
 
-Title tag · Meta description · H1 hierarchy · Canonical URL · Hreflang · Open Graph · JSON-LD schema · Schema currency · Schema completeness · Breadcrumb schema · Review schema integrity · robots.txt · Sitemap presence · Sitemap freshness · SSL certificate · Mobile viewport · Mixed content · Meta robots · Redirect chain · Image alt tags · Modern image formats · Responsive images · URL cleanliness · Content-to-code ratio · Internal linking · HTML lang attribute · Semantic HTML · Favicon & icons · Core Web Vitals (via Google PageSpeed Insights).
+Title tag Â· Meta description Â· H1 hierarchy Â· Canonical URL Â· Hreflang Â· Open Graph Â· JSON-LD schema Â· Schema currency Â· Schema completeness Â· Breadcrumb schema Â· Review schema integrity Â· robots.txt Â· Sitemap presence Â· Sitemap freshness Â· SSL certificate Â· Mobile viewport Â· Mixed content Â· Meta robots Â· Redirect chain Â· Image alt tags Â· Modern image formats Â· Responsive images Â· URL cleanliness Â· Content-to-code ratio Â· Internal linking Â· HTML lang attribute Â· Semantic HTML Â· Favicon & icons Â· Core Web Vitals (via Google PageSpeed Insights).
 
-### 🤖 Logic — LLM Readiness (19 checks)
+### ðŸ¤– Logic â€” LLM Readiness (19 checks)
 
 **Can an AI search system parse, cite, and quote the page?**
 
-Content clarity · Answer capsules · Content extractability · Citation worthiness · Entity recognition · FAQ presence · Question-shaped headings · Definition clarity · Source attribution · Source citations · Author & expertise signals · WebSite / WebPage schema · Speakable schema · HowTo schema · AI bot accessibility (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot`, and others) · Content freshness · `llms.txt` presence · Content readability (Flesch-Kincaid) · Sentence complexity · Content accessibility.
+Content clarity Â· Answer capsules Â· Content extractability Â· Citation worthiness Â· Entity recognition Â· FAQ presence Â· Question-shaped headings Â· Definition clarity Â· Source attribution Â· Source citations Â· Author & expertise signals Â· WebSite / WebPage schema Â· Speakable schema Â· HowTo schema Â· AI bot accessibility (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot`, and others) Â· Content freshness Â· `llms.txt` presence Â· Content readability (Flesch-Kincaid) Â· Sentence complexity Â· Content accessibility.
 
-### 🎯 Rhetoric — Marketing Effectiveness (20 checks)
+### ðŸŽ¯ Rhetoric â€” Marketing Effectiveness (20 checks)
 
 **Will the page actually convert the visitors it earns?**
 
-Value proposition specificity · CTA effectiveness · CTA copy quality · CTA-above-fold placement · Trust signals near CTAs · Social proof · Social proof signals · Headline formula quality · Benefit-vs-feature language · Urgency & scarcity cues · Emotional trigger words · Above-fold messaging · Contact visibility · Reviews & ratings · Video content · Form optimization · Accessibility landmarks · Typography quality · Color contrast · Logo detection · Font display optimization · Preconnect hints · Content structure consistency · Privacy & security signals · Image lazy loading.
+Value proposition specificity Â· CTA effectiveness Â· CTA copy quality Â· CTA-above-fold placement Â· Trust signals near CTAs Â· Social proof Â· Social proof signals Â· Headline formula quality Â· Benefit-vs-feature language Â· Urgency & scarcity cues Â· Emotional trigger words Â· Above-fold messaging Â· Contact visibility Â· Reviews & ratings Â· Video content Â· Form optimization Â· Accessibility landmarks Â· Typography quality Â· Color contrast Â· Logo detection Â· Font display optimization Â· Preconnect hints Â· Content structure consistency Â· Privacy & security signals Â· Image lazy loading.
 
 ## Features
 
-- ✅ **Page-type aware** — Product pages, articles, contact pages, legal pages, and landings all graded differently. Irrelevant checks return `na` and don't drag the score.
-- ✅ **Multi-page site scans** — Discover up to 5,000 pages via sitemap + BFS crawl. Stream results as NDJSON so the UI shows progress page-by-page.
-- ✅ **Competitor comparison** — Scan up to 10 competitor URLs alongside yours, side-by-side.
-- ✅ **CMS detection & enrichment** — Auto-detects WordPress, Shopify, Adobe Experience Manager, and generic CMS signals. Pulls extra signals from public REST APIs (no user credentials).
-- ✅ **Core Web Vitals** — LCP, FID, CLS, TTFB, FCP, Speed Index via Google PageSpeed Insights.
-- ✅ **PDF export** — White-label-friendly audit reports.
-- ✅ **Site-wide pattern detection** — Surfaces issues that affect more than one page so you can fix them at the source.
-- ✅ **Polite crawler** — Respects `robots.txt`, configurable delay between requests, SSRF protection for fetched URLs.
-- ✅ **Zero-config dev** — `npm install && npm run dev` and you're scanning.
+- âœ… **Page-type aware** â€” Product pages, articles, contact pages, legal pages, and landings all graded differently. Irrelevant checks return `na` and don't drag the score.
+- âœ… **Multi-page site scans** â€” Discover up to 5,000 pages via sitemap + BFS crawl. Stream results as NDJSON so the UI shows progress page-by-page.
+- âœ… **Competitor comparison** â€” Scan up to 10 competitor URLs alongside yours, side-by-side.
+- âœ… **CMS detection & enrichment** â€” Auto-detects WordPress, Shopify, Adobe Experience Manager, and generic CMS signals. Pulls extra signals from public REST APIs (no user credentials).
+- âœ… **Core Web Vitals** â€” LCP, FID, CLS, TTFB, FCP, Speed Index via Google PageSpeed Insights.
+- âœ… **PDF export** â€” White-label-friendly audit reports.
+- âœ… **Site-wide pattern detection** â€” Surfaces issues that affect more than one page so you can fix them at the source.
+- âœ… **Polite crawler** â€” Respects `robots.txt`, configurable delay between requests, SSRF protection for fetched URLs.
+- âœ… **Zero-config dev** â€” `npm install && npm run dev` and you're scanning.
 
 ## Screenshot
 
@@ -142,19 +141,19 @@ Value proposition specificity · CTA effectiveness · CTA copy quality · CTA-ab
 > Replace this section with an actual screenshot of the Trivium UI. Recommended: a hero-card showing the three pillar scores side-by-side after a real scan.
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│  Trivium                              [Scan] [Report] [...]  │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│   ◯ 84/100        🔧 SEO        91 ▰▰▰▰▰▰▰▰▰▱   pass         │
-│   Advanced        🤖 LLM        72 ▰▰▰▰▰▰▰▱▱▱   warn         │
-│                   🎯 Marketing  87 ▰▰▰▰▰▰▰▰▱▱   pass         │
-│                   ⚡ Perf       89 ▰▰▰▰▰▰▰▰▱▱   pass         │
-│                                                              │
-│   Title Tag  pass · 58 chars · keyword-front-loaded          │
-│   FAQ Schema fail · No FAQPage structured data detected      │
-│   ...                                                        │
-└──────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  Trivium                              [Scan] [Report] [...]  â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚                                                              â”‚
+â”‚   â—¯ 84/100        ðŸ”§ SEO        91 â–°â–°â–°â–°â–°â–°â–°â–°â–°â–±   pass         â”‚
+â”‚   Advanced        ðŸ¤– LLM        72 â–°â–°â–°â–°â–°â–°â–°â–±â–±â–±   warn         â”‚
+â”‚                   ðŸŽ¯ Marketing  87 â–°â–°â–°â–°â–°â–°â–°â–°â–±â–±   pass         â”‚
+â”‚                   âš¡ Perf       89 â–°â–°â–°â–°â–°â–°â–°â–°â–±â–±   pass         â”‚
+â”‚                                                              â”‚
+â”‚   Title Tag  pass Â· 58 chars Â· keyword-front-loaded          â”‚
+â”‚   FAQ Schema fail Â· No FAQPage structured data detected      â”‚
+â”‚   ...                                                        â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ## Quick Start
@@ -209,14 +208,14 @@ npm start              # runs the api in production mode
 
 ## Configuration
 
-All configuration is environment-variable based. Copy `api/.env.example` to `api/.env` and edit. **Every variable is optional** — Trivium works against any public URL out of the box.
+All configuration is environment-variable based. Copy `api/.env.example` to `api/.env` and edit. **Every variable is optional** â€” Trivium works against any public URL out of the box.
 
 | Variable | Default | What it does |
 | --- | --- | --- |
 | `PORT` | `3001` | API listen port |
 | `NODE_ENV` | `development` | Switches between dev (CORS open) and production (CORS restricted to `FRONTEND_URL`, serves built frontend) |
 | `FRONTEND_URL` | `http://localhost:5173` | Used for production CORS |
-| `PSI_API_KEY` | — | Google PageSpeed Insights API key. Without it, falls back to the rate-limited anonymous endpoint. [Get one free](https://developers.google.com/speed/docs/insights/v5/get-started). |
+| `PSI_API_KEY` | â€” | Google PageSpeed Insights API key. Without it, falls back to the rate-limited anonymous endpoint. [Get one free](https://developers.google.com/speed/docs/insights/v5/get-started). |
 | `PAGE_LIMIT` | `200` | Max pages per multi-page scan |
 | `AUDIT_PAGE_LIMIT` | `5000` | Max pages per `/audit/discover` run |
 | `AUDIT_DEPTH_LIMIT` | `10` | Max crawl depth |
@@ -236,13 +235,13 @@ npm run dev
 
 Then open http://localhost:5173 and use the interface:
 
-- **Scan tab** — Single-page audit. Enter a URL and get a full report.
-- **Page Audit tab** — Multi-page deep audit with site-wide pattern detection.
-- **Report tab** — View the most recent scan results, export to PDF.
+- **Scan tab** â€” Single-page audit. Enter a URL and get a full report.
+- **Page Audit tab** â€” Multi-page deep audit with site-wide pattern detection.
+- **Report tab** â€” View the most recent scan results, export to PDF.
 
 ### Direct API
 
-Trivium's backend is a plain HTTP API — call it from anywhere.
+Trivium's backend is a plain HTTP API â€” call it from anywhere.
 
 ```bash
 # Single-page scan
@@ -340,34 +339,34 @@ For site scans (`/api/scan/site` and `/api/audit/discover`) the flow repeats per
 
 ```
 trivium/
-├── app/                              React 19 frontend (Vite, ESM)
-│   ├── src/
-│   │   ├── SiteAuditApp.jsx          Main dashboard component
-│   │   ├── main.jsx                  Entry point
-│   │   ├── components/               UI components (CheckRow, ScoreRing, etc.)
-│   │   ├── checks/                   Frontend fallback mocks
-│   │   ├── config/                   Theme, FAQ, explanations
-│   │   ├── hooks/                    useScan, useScanHistory, usePageAudit
-│   │   └── utils/                    PDF generation, recommendations
-│   └── index.html
-├── api/                              Express 5 backend (CommonJS)
-│   ├── index.js                      Scan endpoints
-│   ├── crawler.js                    fetchPage, parsePage, discoverPages
-│   ├── checks/                       SEO, LLM, marketing, performance suites
-│   ├── plugins/                      CMS detection (WordPress, Shopify, AEM)
-│   ├── middleware/                   SSRF protection, rate limiting
-│   ├── config/                       Scan limits, page-type applicability map
-│   ├── utils/                        Page-type classifier, readability, helpers
-│   └── __tests__/                    Jest test suite
-├── ARCHITECTURE.md                   Deeper code tour
-├── SETUP.md                          Detailed setup
-├── CONTRIBUTING.md                   How to contribute
-├── SECURITY.md                       Vulnerability reporting
-├── CLA.md                            Contributor License Agreement
-├── COMMERCIAL-LICENSE.md             Closed-source / proprietary use
-├── CODE_OF_CONDUCT.md                Contributor Covenant 2.1
-├── LICENSE                           GNU AGPL-3.0 (full text)
-└── NOTICE                            Third-party attribution
+â”œâ”€â”€ app/                              React 19 frontend (Vite, ESM)
+â”‚   â”œâ”€â”€ src/
+â”‚   â”‚   â”œâ”€â”€ SiteAuditApp.jsx          Main dashboard component
+â”‚   â”‚   â”œâ”€â”€ main.jsx                  Entry point
+â”‚   â”‚   â”œâ”€â”€ components/               UI components (CheckRow, ScoreRing, etc.)
+â”‚   â”‚   â”œâ”€â”€ checks/                   Frontend fallback mocks
+â”‚   â”‚   â”œâ”€â”€ config/                   Theme, FAQ, explanations
+â”‚   â”‚   â”œâ”€â”€ hooks/                    useScan, useScanHistory, usePageAudit
+â”‚   â”‚   â””â”€â”€ utils/                    PDF generation, recommendations
+â”‚   â””â”€â”€ index.html
+â”œâ”€â”€ api/                              Express 5 backend (CommonJS)
+â”‚   â”œâ”€â”€ index.js                      Scan endpoints
+â”‚   â”œâ”€â”€ crawler.js                    fetchPage, parsePage, discoverPages
+â”‚   â”œâ”€â”€ checks/                       SEO, LLM, marketing, performance suites
+â”‚   â”œâ”€â”€ plugins/                      CMS detection (WordPress, Shopify, AEM)
+â”‚   â”œâ”€â”€ middleware/                   SSRF protection, rate limiting
+â”‚   â”œâ”€â”€ config/                       Scan limits, page-type applicability map
+â”‚   â”œâ”€â”€ utils/                        Page-type classifier, readability, helpers
+â”‚   â””â”€â”€ __tests__/                    Jest test suite
+â”œâ”€â”€ ARCHITECTURE.md                   Deeper code tour
+â”œâ”€â”€ SETUP.md                          Detailed setup
+â”œâ”€â”€ CONTRIBUTING.md                   How to contribute
+â”œâ”€â”€ SECURITY.md                       Vulnerability reporting
+â”œâ”€â”€ CLA.md                            Contributor License Agreement
+â”œâ”€â”€ COMMERCIAL-LICENSE.md             Closed-source / proprietary use
+â”œâ”€â”€ CODE_OF_CONDUCT.md                Contributor Covenant 2.1
+â”œâ”€â”€ LICENSE                           GNU AGPL-3.0 (full text)
+â””â”€â”€ NOTICE                            Third-party attribution
 ```
 
 ## Tech Stack
@@ -376,7 +375,7 @@ trivium/
 | --- | --- |
 | Frontend framework | [React 19](https://react.dev) |
 | Build tool | [Vite 8](https://vitejs.dev) |
-| Styling | Inline styles, custom dark theme — no UI library |
+| Styling | Inline styles, custom dark theme â€” no UI library |
 | Backend framework | [Express 5](https://expressjs.com) (CommonJS) |
 | HTML parsing | [Cheerio](https://cheerio.js.org) |
 | HTTP rate limiting | [express-rate-limit](https://express-rate-limit.mintlify.app/) |
@@ -403,11 +402,11 @@ CI runs on every pull request via [`.github/workflows/test.yml`](.github/workflo
 
 Trivium is a normal Node + Vite app. Any Node 22 host works:
 
-- **Render / Railway / Fly.io** — Single-service deploy. Run `npm run build` then `npm start`.
-- **Vercel / Netlify** — Frontend as a static site, API as a separate service or serverless function.
-- **VPS / bare metal** — `pm2 start api/index.js` behind nginx.
+- **Render / Railway / Fly.io** â€” Single-service deploy. Run `npm run build` then `npm start`.
+- **Vercel / Netlify** â€” Frontend as a static site, API as a separate service or serverless function.
+- **VPS / bare metal** â€” `pm2 start api/index.js` behind nginx.
 
-The repo intentionally does not ship a `fly.toml`, `vercel.json`, or any other infrastructure-as-config tied to a specific host — your deployment, your choice.
+The repo intentionally does not ship a `fly.toml`, `vercel.json`, or any other infrastructure-as-config tied to a specific host â€” your deployment, your choice.
 
 Set `NODE_ENV=production` and `FRONTEND_URL=https://your-domain.tld` in your environment. The API will serve the built frontend from `app/dist/`.
 
@@ -426,7 +425,7 @@ The OSS engine is feature-complete for the deterministic-audit use case. Planned
 - [ ] Browser extension (Chrome / Firefox) for one-click scanning
 - [ ] Webhook notifications on threshold breaches
 
-AI-powered features and OAuth integrations to Google Search Console / GA4 / Adobe Analytics / Meta Business are **intentionally out of scope** for the OSS engine — they live in the commercial product at [siteauditpro.online](https://siteauditpro.online).
+AI-powered features and OAuth integrations to Google Search Console / GA4 / Adobe Analytics / Meta Business are **intentionally out of scope** for the OSS engine â€” they live in the commercial product at [siteauditpro.online](https://siteauditpro.online).
 
 ## Contributing
 
@@ -438,7 +437,7 @@ Contributions are welcome and appreciated. See [`CONTRIBUTING.md`](CONTRIBUTING.
 - Code style
 - Pull request process
 
-By submitting a PR you agree your contribution is licensed under AGPL-3.0-only. For dual-licensing eligibility, also sign the [Contributor License Agreement](CLA.md) — the [CLA Assistant](https://cla-assistant.io/) bot will prompt you on your first PR.
+By submitting a PR you agree your contribution is licensed under AGPL-3.0-only. For dual-licensing eligibility, also sign the [Contributor License Agreement](CLA.md) â€” the [CLA Assistant](https://cla-assistant.io/) bot will prompt you on your first PR.
 
 All contributors must follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
@@ -451,19 +450,19 @@ Looking for somewhere to start? Check [issues tagged `good first issue`](https:/
 <details>
 <summary><strong>Does Trivium send my scanned URLs to a third party?</strong></summary>
 
-The only external call is to Google PageSpeed Insights for Core Web Vitals — same as every Lighthouse-based tool. If you set `PSI_API_KEY` your scans use your quota; if you don't, they use the anonymous (rate-limited) endpoint. Everything else runs locally against the page's HTML.
+The only external call is to Google PageSpeed Insights for Core Web Vitals â€” same as every Lighthouse-based tool. If you set `PSI_API_KEY` your scans use your quota; if you don't, they use the anonymous (rate-limited) endpoint. Everything else runs locally against the page's HTML.
 </details>
 
 <details>
 <summary><strong>How is this different from Lighthouse?</strong></summary>
 
-Lighthouse audits one dimension (performance + accessibility + SEO basics) and runs in a headless browser. Trivium runs ~70 checks across three dimensions (SEO, LLM-readiness, marketing) against raw HTML and is page-type aware. They're complementary, not competing — Trivium uses Lighthouse data for Core Web Vitals.
+Lighthouse audits one dimension (performance + accessibility + SEO basics) and runs in a headless browser. Trivium runs ~70 checks across three dimensions (SEO, LLM-readiness, marketing) against raw HTML and is page-type aware. They're complementary, not competing â€” Trivium uses Lighthouse data for Core Web Vitals.
 </details>
 
 <details>
 <summary><strong>Why no AI in the OSS version?</strong></summary>
 
-To keep the engine free-to-run with zero recurring cost. AI inference requires either an API key (cost passes to the user) or a hosted service (cost passes to us). The hosted version at [siteauditpro.online](https://siteauditpro.online) handles AI on our side — that's the commercial differentiator.
+To keep the engine free-to-run with zero recurring cost. AI inference requires either an API key (cost passes to the user) or a hosted service (cost passes to us). The hosted version at [siteauditpro.online](https://siteauditpro.online) handles AI on our side â€” that's the commercial differentiator.
 </details>
 
 <details>
@@ -471,8 +470,8 @@ To keep the engine free-to-run with zero recurring cost. AI inference requires e
 
 Yes, with two paths:
 
-1. **Open-source use under AGPL-3.0** — Free for any purpose, including commercial. If you run a modified version as a public service, you must publish your modifications under AGPL-3.0.
-2. **Commercial license** — If AGPL doesn't work for your situation (embedding in closed-source products, policy restrictions, etc.), see [`COMMERCIAL-LICENSE.md`](COMMERCIAL-LICENSE.md).
+1. **Open-source use under AGPL-3.0** â€” Free for any purpose, including commercial. If you run a modified version as a public service, you must publish your modifications under AGPL-3.0.
+2. **Commercial license** â€” If AGPL doesn't work for your situation (embedding in closed-source products, policy restrictions, etc.), see [`COMMERCIAL-LICENSE.md`](COMMERCIAL-LICENSE.md).
 </details>
 
 <details>
@@ -484,7 +483,7 @@ The deterministic checks (schema presence, AI-bot accessibility, content structu
 <details>
 <summary><strong>Does Trivium support languages other than English?</strong></summary>
 
-The scanner is language-agnostic — schema, technical SEO, and markup checks work on any language. A few text-based heuristics (readability, sentence complexity, headline analysis) are English-tuned. PRs welcome to add multilingual support.
+The scanner is language-agnostic â€” schema, technical SEO, and markup checks work on any language. A few text-based heuristics (readability, sentence complexity, headline analysis) are English-tuned. PRs welcome to add multilingual support.
 </details>
 
 <details>
@@ -501,20 +500,20 @@ It complements rather than replaces traditional SEO suites. Ahrefs, SEMrush, and
 
 ## Community & Support
 
-- 🐛 **Bugs and feature requests** — [GitHub Issues](https://github.com/KaiMOdev/trivium/issues)
-- 💬 **Questions and discussion** — [GitHub Discussions](https://github.com/KaiMOdev/trivium/discussions)
-- 🔒 **Security vulnerabilities** — See [`SECURITY.md`](SECURITY.md). Use GitHub Security Advisories, do **not** open public issues.
-- 💼 **Commercial licensing** — See [`COMMERCIAL-LICENSE.md`](COMMERCIAL-LICENSE.md) for contact details.
+- ðŸ› **Bugs and feature requests** â€” [GitHub Issues](https://github.com/KaiMOdev/trivium/issues)
+- ðŸ’¬ **Questions and discussion** â€” [GitHub Discussions](https://github.com/KaiMOdev/trivium/discussions)
+- ðŸ”’ **Security vulnerabilities** â€” See [`SECURITY.md`](SECURITY.md). Use GitHub Security Advisories, do **not** open public issues.
+- ðŸ’¼ **Commercial licensing** â€” See [`COMMERCIAL-LICENSE.md`](COMMERCIAL-LICENSE.md) for contact details.
 
 ## Security
 
 Trivium implements several defensive measures:
 
-- **SSRF protection** — Fetches are restricted to public HTTP/HTTPS URLs; private IP ranges (RFC 1918) and metadata endpoints are blocked. See [`api/middleware/ssrf.js`](api/middleware/ssrf.js).
-- **Rate limiting** — All scan endpoints are rate-limited per-IP (configurable via `SCAN_RATE_LIMIT`).
-- **Input validation** — URLs are validated and length-capped at 2,048 chars; competitor lists capped at 10; arrays length-limited throughout.
-- **No persistence** — The OSS engine doesn't store scan results, user data, or session state. There's nothing to leak.
-- **Helmet headers** — Production responses set `X-Content-Type-Options`, `Strict-Transport-Security`, and friends.
+- **SSRF protection** â€” Fetches are restricted to public HTTP/HTTPS URLs; private IP ranges (RFC 1918) and metadata endpoints are blocked. See [`api/middleware/ssrf.js`](api/middleware/ssrf.js).
+- **Rate limiting** â€” All scan endpoints are rate-limited per-IP (configurable via `SCAN_RATE_LIMIT`).
+- **Input validation** â€” URLs are validated and length-capped at 2,048 chars; competitor lists capped at 10; arrays length-limited throughout.
+- **No persistence** â€” The OSS engine doesn't store scan results, user data, or session state. There's nothing to leak.
+- **Helmet headers** â€” Production responses set `X-Content-Type-Options`, `Strict-Transport-Security`, and friends.
 
 For coordinated disclosure of vulnerabilities, see [`SECURITY.md`](SECURITY.md).
 
@@ -556,20 +555,14 @@ A managed, hosted version of Trivium is available at **[siteauditpro.online](htt
 
 The hosted product extends this open-source engine with:
 
-- 🤖 **AI-powered narrative summaries** — Claude-generated audit verdicts, critical-issue triage, and quick wins.
-- 🔧 **Per-check AI fix suggestions** — Claude proposes ready-to-paste code snippets and copy fixes for failing checks.
-- 🔌 **OAuth integrations** — Google Search Console, Google Analytics 4, Google Ads, Adobe Analytics, Meta Business (Pixel + Page Insights).
-- 👥 **Team accounts, scan history, scheduled monitoring** — multi-user workspaces, historical trend tracking, weekly re-scans.
-- 📧 **Email reports** — automated delivery to stakeholders.
-- 📄 **White-label PDF exports** — agency-friendly reporting.
+- ðŸ¤– **AI-powered narrative summaries** â€” Claude-generated audit verdicts, critical-issue triage, and quick wins.
+- ðŸ”§ **Per-check AI fix suggestions** â€” Claude proposes ready-to-paste code snippets and copy fixes for failing checks.
+- ðŸ”Œ **OAuth integrations** â€” Google Search Console, Google Analytics 4, Google Ads, Adobe Analytics, Meta Business (Pixel + Page Insights).
+- ðŸ‘¥ **Team accounts, scan history, scheduled monitoring** â€” multi-user workspaces, historical trend tracking, weekly re-scans.
+- ðŸ“§ **Email reports** â€” automated delivery to stakeholders.
+- ðŸ“„ **White-label PDF exports** â€” agency-friendly reporting.
 
 The OSS engine and the commercial product share the same audit core. If you want the engine on its own, you're in the right place. If you want the engine plus AI plus a team workspace, try the hosted version.
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=KaiMOdev/trivium&type=Date)](https://star-history.com/#KaiMOdev/trivium&Date)
-
-If Trivium is useful to you, a ⭐ helps other people find it.
 
 ## Contributors
 
@@ -581,31 +574,31 @@ Made with [contrib.rocks](https://contrib.rocks).
 
 ## Acknowledgements
 
-- The [classical trivium](https://en.wikipedia.org/wiki/Trivium) — grammar, logic, and rhetoric — for naming.
+- The [classical trivium](https://en.wikipedia.org/wiki/Trivium) â€” grammar, logic, and rhetoric â€” for naming.
 - [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) for the Core Web Vitals data feed.
-- The maintainers of [Cheerio](https://cheerio.js.org/), [Express](https://expressjs.com/), [React](https://react.dev/), and [Vite](https://vitejs.dev/) — Trivium is a thin shell over excellent open-source primitives.
+- The maintainers of [Cheerio](https://cheerio.js.org/), [Express](https://expressjs.com/), [React](https://react.dev/), and [Vite](https://vitejs.dev/) â€” Trivium is a thin shell over excellent open-source primitives.
 - [Schema.org](https://schema.org/), the [W3C](https://www.w3.org/), and the various publishers of `llms.txt` who are shaping the standards Trivium audits against.
-- Every site author who has thought about how their content reads to a machine — you make this useful.
+- Every site author who has thought about how their content reads to a machine â€” you make this useful.
 
 ## Maintainer
 
-Trivium is built and maintained by **[Lams IT Solutions](https://lamsitsolutions.com)** — a Belgium-based software studio.
+Trivium is built and maintained by **[Lams IT Solutions](https://lamsitsolutions.be)** â€” a Belgium-based software studio.
 
 | | |
 | --- | --- |
-| 🌐 Company website | https://lamsitsolutions.com |
-| 🚀 Hosted product | https://siteauditpro.online |
-| 💻 This repository | https://github.com/KaiMOdev/trivium |
-| 🐦 Follow updates | [GitHub Releases](https://github.com/KaiMOdev/trivium/releases) |
+| ðŸŒ Company website | https://lamsitsolutions.be |
+| ðŸš€ Hosted product | https://siteauditpro.online |
+| ðŸ’» This repository | https://github.com/KaiMOdev/trivium |
+| ðŸ¦ Follow updates | [GitHub Releases](https://github.com/KaiMOdev/trivium/releases) |
 
 ---
 
 <div align="center">
 
-**Built with ❤️ by [Lams IT Solutions](https://lamsitsolutions.com)**
+**Built with â¤ï¸ by [Lams IT Solutions](https://lamsitsolutions.be)**
 
-Copyright © 2026 Lams IT Solutions · Released under [AGPL-3.0-only](LICENSE)
+Copyright Â© 2026 Lams IT Solutions Â· Released under [AGPL-3.0-only](LICENSE)
 
-[⬆ Back to top](#trivium)
+[â¬† Back to top](#trivium)
 
 </div>
