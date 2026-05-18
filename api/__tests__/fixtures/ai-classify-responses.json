@@ -1,0 +1,56 @@
+{
+  "saasLanding": {
+    "classification": { "industry": "saas", "businessModel": "b2b", "sitePurpose": "generate-leads" },
+    "checks": {
+      "ctaRelevance": { "score": 82, "detail": "CTA 'Start Free Trial' is well-aligned with B2B SaaS lead generation — clear and low-commitment" },
+      "valuePropClarity": { "score": 45, "detail": "Hero text 'We deliver solutions' is vague — no specific benefit, outcome, or differentiator stated" },
+      "contentAudienceFit": { "score": 88, "detail": "Technical depth matches B2B audience — proper use of industry terminology without over-explaining" },
+      "brandConsistency": { "score": 75, "detail": "Tone is consistently professional throughout, minor shift to casual in FAQ section" }
+    }
+  },
+  "ecommerceProduct": {
+    "classification": { "industry": "ecommerce", "businessModel": "b2c", "sitePurpose": "sell-products" },
+    "checks": {
+      "ctaRelevance": { "score": 90, "detail": "'Add to Cart' with price visibility is the expected CTA pattern for e-commerce product pages" },
+      "valuePropClarity": { "score": 70, "detail": "Product benefits listed but no comparison to alternatives — 'why this product' is unclear" },
+      "contentAudienceFit": { "score": 85, "detail": "Consumer-friendly language with clear specs and sizing — appropriate for B2C shoppers" },
+      "brandConsistency": { "score": 80, "detail": "Consistent casual-friendly tone, product descriptions match brand voice from homepage" }
+    }
+  },
+  "blogArticle": {
+    "classification": { "industry": "education", "businessModel": "b2c", "sitePurpose": "inform-educate" },
+    "checks": {
+      "ctaRelevance": { "score": 55, "detail": "Newsletter signup CTA is relevant but buried at the bottom — should appear after the introduction" },
+      "valuePropClarity": { "score": 30, "detail": "Article lacks a clear thesis in the introduction — readers don't know what they'll learn" },
+      "contentAudienceFit": { "score": 72, "detail": "Content depth is appropriate for general audience but some jargon introduced without explanation" },
+      "brandConsistency": { "score": 90, "detail": "Consistent educational tone throughout — clear, instructive, and well-paced" }
+    }
+  },
+  "localRestaurant": {
+    "classification": { "industry": "restaurant", "businessModel": "b2c", "sitePurpose": "provide-service" },
+    "checks": {
+      "ctaRelevance": { "score": 65, "detail": "'Order Online' CTA is relevant but 'Reserve a Table' should be equally prominent for dine-in restaurants" },
+      "valuePropClarity": { "score": 78, "detail": "Cuisine type and atmosphere clearly communicated through hero imagery and tagline" },
+      "contentAudienceFit": { "score": 82, "detail": "Menu presentation and location info are what local diners expect — clear and scannable" },
+      "brandConsistency": { "score": 85, "detail": "Warm, inviting tone consistent across all sections — matches the restaurant's casual dining positioning" }
+    }
+  },
+  "b2bService": {
+    "classification": { "industry": "agency", "businessModel": "b2b", "sitePurpose": "generate-leads" },
+    "checks": {
+      "ctaRelevance": { "score": 40, "detail": "Generic 'Contact Us' CTA — B2B agencies should offer specific next steps like 'Book a Strategy Call' or 'Get a Free Audit'" },
+      "valuePropClarity": { "score": 35, "detail": "'World-class digital solutions' says nothing specific — no outcomes, no metrics, no differentiator from competitors" },
+      "contentAudienceFit": { "score": 60, "detail": "Content is too high-level for B2B decision-makers who need case studies, methodology, and proof points" },
+      "brandConsistency": { "score": 50, "detail": "Corporate jargon in hero clashes with casual testimonials section — two different voices on one page" }
+    }
+  },
+  "emptyPage": {
+    "classification": { "industry": "other", "businessModel": "other", "sitePurpose": "other" },
+    "checks": {
+      "ctaRelevance": { "score": 0, "detail": "No CTA found on the page — cannot evaluate relevance" },
+      "valuePropClarity": { "score": 0, "detail": "No value proposition or meaningful content detected on the page" },
+      "contentAudienceFit": { "score": 0, "detail": "Insufficient content to evaluate audience fit — page appears empty or under construction" },
+      "brandConsistency": { "score": 0, "detail": "No content to evaluate for brand consistency" }
+    }
+  }
+}

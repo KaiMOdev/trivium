@@ -1,0 +1,31 @@
+Trivium
+Copyright (C) 2026 Lams IT Solutions
+
+This product includes software developed by Lams IT Solutions, licensed under
+the GNU Affero General Public License v3.0 (AGPL-3.0-only).
+
+The full text of the license is in the LICENSE file at the root of this
+repository, and is also available at:
+  https://www.gnu.org/licenses/agpl-3.0.txt
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+────────────────────────────────────────────────────────────────────────
+THIRD-PARTY COMPONENTS
+
+This product redistributes or depends on the following third-party software:
+
+  - Express, Cheerio, Helmet, dotenv, express-rate-limit — MIT
+  - React, React DOM, Vite — MIT
+  - @anthropic-ai/sdk — MIT
+  - googleapis — Apache-2.0
+  - jspdf, marked — MIT
+  - Jest, Vitest, Testing Library — MIT
+
+See each package's own LICENSE in node_modules/ after install for full text.
+
+────────────────────────────────────────────────────────────────────────
+COMMERCIAL LICENSING
+
+A commercial (non-AGPL) license is available from Lams IT Solutions for
+organizations that cannot comply with AGPL-3.0. See COMMERCIAL-LICENSE.md.

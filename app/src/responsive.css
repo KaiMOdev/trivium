@@ -1,0 +1,301 @@
+/* ─── Mobile Responsive Overrides (≤768px) ─── */
+@media (max-width: 768px) {
+  /* Header */
+  .sap-header {
+    padding: 0 12px !important;
+    height: 48px !important;
+  }
+  .sap-header-nav { display: none !important; }
+  .sap-header-help { display: none !important; }
+  .sap-header-website { display: none !important; }
+  .sap-header-pricing { display: none !important; }
+  .sap-header-tier { display: none !important; }
+  .sap-header-logo-text { display: none !important; }
+  .sap-hamburger { display: flex !important; }
+  .sap-mobile-menu {
+    display: flex !important;
+    position: fixed;
+    top: 48px;
+    left: 0; right: 0;
+    z-index: 99;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: rgba(6,8,12,0.95);
+    backdrop-filter: blur(16px);
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  /* Main content */
+  .sap-main {
+    padding: 16px 12px !important;
+  }
+
+  /* Hero section */
+  .sap-hero-title { font-size: 28px !important; }
+  .sap-hero-subtitle { font-size: 14px !important; }
+  .sap-hero-decorative { display: none !important; }
+
+  /* Search bar */
+  .sap-search-bar {
+    flex-direction: column !important;
+    border-radius: 12px !important;
+  }
+  .sap-search-bar input {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .sap-search-btn {
+    margin: 4px !important;
+    border-radius: 8px !important;
+  }
+  .sap-site-scan-group {
+    flex-direction: row !important;
+    width: 100%;
+  }
+  .sap-site-scan-group select {
+    flex: 1;
+    margin: 4px 0 4px 4px !important;
+    border-radius: 8px !important;
+  }
+  .sap-site-scan-group button {
+    flex: 1;
+    margin: 4px 4px 4px 0 !important;
+    border-radius: 8px !important;
+  }
+
+  /* Feature grid */
+  .sap-feature-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Score overview */
+  .sap-score-overview {
+    grid-template-columns: 1fr !important;
+    padding: 20px 16px !important;
+    gap: 20px !important;
+  }
+  .sap-score-overview-ring {
+    flex-direction: row !important;
+    gap: 16px !important;
+  }
+
+  /* Category score cards */
+  .sap-category-scores {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .sap-category-scores > div {
+    padding: 10px 12px !important;
+  }
+  .sap-category-score-value {
+    font-size: 22px !important;
+  }
+
+  /* Result tabs */
+  .sap-result-tabs {
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .sap-result-tabs::-webkit-scrollbar { display: none; }
+  .sap-result-tabs .tab-btn {
+    flex-shrink: 0 !important;
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+  }
+
+  /* CheckRow */
+  .sap-check-row {
+    grid-template-columns: 1fr auto auto !important;
+    gap: 10px !important;
+    padding: 12px 14px !important;
+  }
+  .sap-check-row-ring { display: none !important; }
+  .sap-check-row-expand { font-size: 10px !important; }
+  .sap-check-row-items span {
+    max-width: 220px !important;
+  }
+
+  /* ScoreCard */
+  .sap-score-card-grid {
+    grid-template-columns: 40px 1fr auto !important;
+    gap: 10px !important;
+    padding: 12px 14px !important;
+  }
+  .sap-score-card-expand { font-size: 10px !important; }
+
+  /* Account page */
+  .sap-account-layout {
+    flex-direction: column !important;
+    min-height: auto !important;
+  }
+  .sap-account-sidebar {
+    width: 100% !important;
+    flex-shrink: 1 !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    padding: 12px 0 !important;
+  }
+  .sap-account-sidebar-nav {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 4px !important;
+    padding: 0 12px !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .sap-account-sidebar-nav::-webkit-scrollbar { display: none; }
+  .sap-account-sidebar-nav button {
+    flex-shrink: 0 !important;
+    padding: 8px 14px !important;
+    border-right: none !important;
+    border-bottom: 2px solid transparent !important;
+    white-space: nowrap !important;
+    font-size: 12px !important;
+  }
+  .sap-account-sidebar-signout { display: none !important; }
+  .sap-account-content {
+    padding: 20px 16px !important;
+    max-width: 100% !important;
+  }
+
+  /* Pricing modal */
+  .sap-pricing-cards {
+    flex-direction: column !important;
+    padding: 16px !important;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+  .sap-pricing-cards > div {
+    flex: none !important;
+  }
+
+  /* Performance metric cards */
+  .sap-perf-metrics {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Performance score row */
+  .sap-perf-score {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    padding: 16px !important;
+  }
+
+  /* Export bar */
+  .sap-export-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding: 14px 16px !important;
+  }
+
+  /* Report return banner */
+  .sap-report-banner {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+  }
+  .sap-report-banner span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* URL header in results */
+  .sap-url-header {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .sap-url-text {
+    font-size: 16px !important;
+    max-width: calc(100vw - 120px) !important;
+  }
+
+  /* Footer */
+  .sap-footer {
+    padding: 20px 16px !important;
+  }
+
+  /* Opportunities */
+  .sap-opportunity {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  /* Score overview decorative glow */
+  .sap-score-glow { display: none !important; }
+
+  /* User menu dropdown */
+  .sap-user-menu {
+    right: -8px !important;
+    min-width: 180px !important;
+  }
+
+  /* Insights summary grid */
+  .sap-insights-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .sap-insights-grid > div:first-child {
+    grid-row: auto !important;
+    grid-column: 1 / -1 !important;
+  }
+
+  /* Insights filter tabs */
+  .sap-insights-filters {
+    width: 100% !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .sap-insights-filters::-webkit-scrollbar { display: none; }
+  .sap-insights-filters .tab-btn {
+    flex-shrink: 0 !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+  }
+
+  /* Recommendation card grid */
+  .sap-rec-card-grid {
+    gap: 10px !important;
+    padding: 14px 16px !important;
+  }
+
+  /* Recommendation card meta row */
+  .sap-rec-card-meta {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  /* Support form row (category + priority) */
+  .sap-support-form-row {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* Support CTA */
+  .sap-support-cta {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 20px 16px !important;
+  }
+
+  /* Scan progress */
+  .sap-scan-progress {
+    margin: 0 !important;
+    padding: 20px 16px !important;
+  }
+
+  /* New version banner */
+  .sap-version-banner {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    gap: 8px !important;
+  }
+}

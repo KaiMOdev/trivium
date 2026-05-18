@@ -1,0 +1,24 @@
+{
+  "name": "trivium",
+  "version": "1.0.0",
+  "license": "AGPL-3.0-only",
+  "description": "Open-source SEO + AI search readiness + marketing audit engine.",
+  "private": true,
+  "workspaces": [
+    "app",
+    "api"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:app\"",
+    "dev:app": "npm run dev --workspace=app",
+    "dev:api": "npm run dev --workspace=api",
+    "build": "npm run build --workspace=app",
+    "start": "npm run start --workspace=api",
+    "test": "npm run test --workspace=api && npm run test --workspace=app",
+    "test:api": "npm run test --workspace=api",
+    "test:app": "npm run test --workspace=app"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

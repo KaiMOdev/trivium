@@ -1,0 +1,10 @@
+node_modules
+.worktrees
+.git
+.playwright-mcp
+seo-expert-review-workspace
+docs
+*.md
+.env
+.dev-gsc-tokens.json
+.dev-ga4-tokens.json

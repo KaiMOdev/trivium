@@ -1,0 +1,17 @@
+node_modules
+.env
+.env.local
+dist
+.worktrees
+.reviews/
+.claude/
+
+# OAuth token storage (per-host, file-based fallback)
+api/.dev-gsc-tokens.json
+api/.dev-ga4-tokens.json
+api/.dev-adobe-tokens.json
+api/.dev-meta-tokens.json
+
+# Local/temp artifacts
+.playwright-mcp/
+*.log

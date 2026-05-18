@@ -1,0 +1,6 @@
+node_modules/
+.env
+.dev-gsc-tokens.json
+.dev-ga4-tokens.json
+.dev-adobe-analytics-tokens.json
+.dev-meta-tokens.json
