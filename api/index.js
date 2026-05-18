@@ -16,18 +16,11 @@ const { runPerformanceChecks } = require("./checks/performance");
 const { detectCMS } = require("./plugins/detect");
 const { analyzeWordPress } = require("./plugins/wordpress");
 const { analyzeShopify } = require("./plugins/shopify");
-const { analyzeGSC } = require("./plugins/gsc");
-const { analyzeGA4, getAuthenticatedClient: getGa4Client } = require("./plugins/ga4");
-const { analyzeAds } = require("./plugins/ads");
-const { analyzeAdobeAnalytics } = require("./plugins/adobe-analytics");
-const { analyzeMeta } = require("./plugins/meta");
 const { analyzeAEM } = require("./plugins/aem");
 const { analyzeReadability } = require("./utils/readability");
 const { detectPageType } = require("./utils/pageType");
 const { debug } = require("./utils/debug");
 const { fetchTextFile, checkExists } = require("./utils/fetch-helpers");
-const { OSS_USER_ID } = require("./middleware/auth");
-const { createIntegrationsRouter } = require("./routes/integrations");
 const { getPageLimit, CONCURRENCY, CRAWL_DELAY_MS, getAuditPageLimit, getAuditDepthLimit } = require("./config/tiers");
 
 const app = express();
@@ -38,15 +31,6 @@ const scanLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: "Too many scan requests — please try again in a minute" },
-  keyGenerator: (req) => ipKeyGenerator(req.ip),
-});
-
-const oauthLimiter = rateLimit({
-  windowMs: 60 * 1000,
-  max: 10,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { error: "Too many OAuth requests — please try again in a minute" },
   keyGenerator: (req) => ipKeyGenerator(req.ip),
 });
 
@@ -64,15 +48,12 @@ app.use(cors({
 }));
 app.use(express.json({ limit: "1mb" }));
 
-app.use("/api/integrations", createIntegrationsRouter({ oauthLimiter }));
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "..", "app", "dist")));
 }
 
-async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, cachedMeta, siteContext, siteHint, checkUrlExists } = {}) {
+async function scanUrl(targetUrl, { siteContext, checkUrlExists } = {}) {
   const origin = new URL(targetUrl).origin;
-  const userId = OSS_USER_ID;
 
   const [pageResult, robotsTxt, performanceResult, llmsTxt] = await Promise.all([
     fetchPage(targetUrl),
@@ -104,35 +85,16 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
   const marketingResults = runMarketingChecks(pageData);
 
   debug("scanUrl", "quickPlatform.cms:", quickPlatform.cms);
-  const [platform, wordpress, shopify, aem, gsc, ga4] = await Promise.all([
+  const [platform, wordpress, shopify, aem] = await Promise.all([
     quickPlatform.cms && quickPlatform.cms.confidence < 80
       ? detectCMS($, origin)
       : quickPlatform,
     analyzeWordPress(origin, quickPlatform),
     analyzeShopify(origin, quickPlatform, $),
     analyzeAEM(origin, quickPlatform, $),
-    analyzeGSC(targetUrl, userId),
-    cachedGa4 !== undefined ? cachedGa4 : analyzeGA4(targetUrl, userId),
   ]);
 
-  let ads = cachedAds !== undefined ? cachedAds : null;
-  if (ads === null && ga4?.available) {
-    try {
-      const ga4Auth = await getGa4Client(userId);
-      ads = await analyzeAds(ga4Auth);
-    } catch { /* optional */ }
-  }
-
-  const adobeAnalytics = cachedAdobeAnalytics !== undefined
-    ? cachedAdobeAnalytics
-    : await analyzeAdobeAnalytics(targetUrl, userId);
-
-  const metaBusiness = cachedMeta !== undefined
-    ? cachedMeta
-    : await analyzeMeta(targetUrl, userId);
-
   debug("scanUrl", "shopify result:", shopify ? "available" : shopify);
-  debug("scanUrl", "metaBusiness result:", metaBusiness?.available, metaBusiness?.reason || "");
 
   const SEO_WEIGHTS = {
     "Title Tag": 3, "Meta Description": 3, "H1 Tag": 3,
@@ -175,11 +137,6 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
     "Emotional Trigger Words": 1, "Headline Formula Quality": 2,
     "Above-Fold Messaging": 3, "Social Proof Signals": 2,
   };
-  const META_WEIGHTS = {
-    "Pixel Installation": 3, "Event Coverage": 3,
-    "Conversions API": 2, "Posting Frequency": 2,
-    "Engagement Rate": 2, "Link Click Activity": 1,
-  };
 
   const weightedScore = (arr, weights) => {
     const filtered = arr.filter(r => r.status !== "na" && r.score != null);
@@ -210,7 +167,6 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
       llm: weightedScore(llmResults, LLM_WEIGHTS),
       marketing: weightedScore(marketingResults, MARKETING_WEIGHTS),
       performance: performanceResult.score,
-      meta: metaBusiness?.available ? weightedScore(metaBusiness.checks, META_WEIGHTS) : null,
     },
     seo: seoResults,
     llm: llmResults,
@@ -220,11 +176,6 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
     wordpress,
     shopify,
     aem,
-    gsc,
-    ga4,
-    ads,
-    adobeAnalytics,
-    metaBusiness,
     readability: (() => {
       const visibleText = pageData.visibleText || "";
       return visibleText.length > 100 ? analyzeReadability(visibleText) : null;
@@ -236,7 +187,6 @@ async function scanUrl(targetUrl, { cachedGa4, cachedAds, cachedAdobeAnalytics, 
       links: pageData.links,
       hasHttps: pageData.isHttps,
     },
-    classification: classifyResult?.classification || null,
     maturityLevel: deriveMaturityLevel(
       weightedScore(seoResults, SEO_WEIGHTS),
       weightedScore(llmResults, LLM_WEIGHTS),
@@ -387,23 +337,8 @@ app.post("/api/scan/site", scanLimiter, async (req, res) => {
 
     send({ type: "discovery", total: pages.length, urls: pages });
 
-    const userId = OSS_USER_ID;
-    const siteGa4 = await analyzeGA4(targetUrl, userId);
-
-    let siteAds = null;
-    if (siteGa4?.available) {
-      try {
-        const ga4Auth = await getGa4Client(userId);
-        siteAds = await analyzeAds(ga4Auth);
-      } catch { /* ignore */ }
-    }
-
-    const siteAdobeAnalytics = await analyzeAdobeAnalytics(targetUrl, userId);
-    const siteMeta = await analyzeMeta(targetUrl, userId);
-
     const pageResults = [];
     let completedCount = 0;
-    let lastClassification = null;
     const checkUrlExists = createCheckExistsCache();
 
     await withConcurrency(pages, CONCURRENCY, async (pageUrl, index) => {
@@ -411,14 +346,7 @@ app.post("/api/scan/site", scanLimiter, async (req, res) => {
       if (index > 0) await new Promise((r) => setTimeout(r, CRAWL_DELAY_MS));
 
       try {
-        const result = await scanUrl(pageUrl, {
-          cachedGa4: siteGa4, cachedAds: siteAds,
-          cachedAdobeAnalytics: siteAdobeAnalytics, cachedMeta: siteMeta,
-          siteContext,
-          siteHint: lastClassification,
-          checkUrlExists,
-        });
-        if (result.classification) lastClassification = result.classification;
+        const result = await scanUrl(pageUrl, { siteContext, checkUrlExists });
         completedCount++;
         send({
           type: "page",
@@ -551,31 +479,15 @@ app.post("/api/audit/discover", scanLimiter, async (req, res) => {
     };
     send({ type: "discovery", total: pages.length, urls: pages });
 
-    const siteGa4 = await analyzeGA4(targetUrl, userId).catch(() => null);
-    let siteAds = null;
-    if (siteGa4?.available) {
-      try { const ga4Auth = await getGa4Client(userId); siteAds = await analyzeAds(ga4Auth); } catch {}
-    }
-    const siteAdobeAnalytics = await analyzeAdobeAnalytics(targetUrl, userId).catch(() => null);
-    const siteMeta = await analyzeMeta(targetUrl, userId).catch(() => null);
-
     const allResults = [];
     let completed = 0;
-    let lastClassification = null;
     const checkUrlExists = createCheckExistsCache();
 
     await withConcurrency(pages, CONCURRENCY, async (pageUrl, index) => {
       if (aborted) return;
       if (index > 0) await new Promise((r) => setTimeout(r, CRAWL_DELAY_MS));
       try {
-        const result = await scanUrl(pageUrl, {
-          cachedGa4: siteGa4, cachedAds: siteAds,
-          cachedAdobeAnalytics: siteAdobeAnalytics, cachedMeta: siteMeta,
-          siteContext,
-          siteHint: lastClassification,
-          checkUrlExists,
-        });
-        if (result.classification) lastClassification = result.classification;
+        const result = await scanUrl(pageUrl, { siteContext, checkUrlExists });
         completed++;
         allResults.push(result);
         send({ type: "page", index, completed, total: pages.length, url: pageUrl, result });

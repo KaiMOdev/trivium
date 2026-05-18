@@ -19,7 +19,7 @@ Site-type aware — an e-commerce product page is graded differently from a B2B 
 
 Every check is a deterministic heuristic — no AI, no API calls to third-party language models. Trivium runs entirely offline against any URL.
 
-A hosted version with AI-powered fix suggestions and team features is available at https://siteauditpro.online — the commercial product extends this open-source engine with LLM-generated narrative and per-check fix recommendations.
+A hosted version is available at https://siteauditpro.online — the commercial product extends this open-source engine with AI-powered narrative summaries, per-check fix recommendations, and OAuth integrations to Google Search Console, Google Analytics 4, Google Ads, Adobe Analytics, and Meta Business.
 
 ## Quick start
 
@@ -31,11 +31,7 @@ cp api/.env.example api/.env
 npm run dev
 ```
 
-Open http://localhost:5173 and scan any URL. No signup, no database, no external services for the core scanner.
-
-## Optional: connect Search Console / GA4 / Adobe / Meta
-
-Each integration is independent. Register an OAuth app with the provider, add the credentials to `api/.env`, and connect from the Integrations panel. Step-by-step in [`SETUP.md`](SETUP.md).
+Open http://localhost:5173 and scan any URL. No signup, no database, no external services.
 
 ## What's in the box
 
@@ -44,7 +40,7 @@ Each integration is independent. Register an OAuth app with the provider, add th
 | `app/` | React 19 frontend (Vite) |
 | `api/` | Express backend |
 | `api/checks/` | 29 SEO, 19 LLM-readiness, 20 marketing checks (all deterministic) |
-| `api/plugins/` | CMS detection + OAuth integrations |
+| `api/plugins/` | CMS detection (WordPress, Shopify, AEM, others) — auth-free, HTML-only |
 | `ARCHITECTURE.md` | Deeper code tour |
 
 ## Tech stack
@@ -56,7 +52,7 @@ Each integration is independent. Register an OAuth app with the provider, add th
 
 ## Documentation
 
-- [`SETUP.md`](SETUP.md) — Detailed setup including OAuth integrations.
+- [`SETUP.md`](SETUP.md) — Detailed setup and configuration.
 - [`ARCHITECTURE.md`](ARCHITECTURE.md) — Code structure, scan flow, page-type detection.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — How to contribute.
 - [`SECURITY.md`](SECURITY.md) — Reporting vulnerabilities.

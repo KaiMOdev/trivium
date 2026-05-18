@@ -14,9 +14,14 @@ npm run dev
 
 This starts the API on `http://localhost:3001` and the frontend on `http://localhost:5173`. The Vite dev server proxies `/api/*` to the backend.
 
-The scanner works against any public URL out of the box. OAuth integrations and PageSpeed-with-quota are opt-in.
+The scanner works against any public URL out of the box. PageSpeed-with-quota is the only opt-in.
 
-AI-powered narrative summaries and per-check fix suggestions are not part of the OSS build — they live in the commercial product at https://siteauditpro.online. The open-source engine is pure deterministic heuristics.
+Features that are **not** in the OSS build:
+
+- **AI-powered narrative summaries** and per-check fix suggestions.
+- **OAuth integrations** to Google Search Console, Google Analytics 4, Google Ads, Adobe Analytics, and Meta Business.
+
+Both live in the commercial product at https://siteauditpro.online. The open-source engine is pure deterministic heuristics against the page's HTML.
 
 ## Enabling Google PageSpeed Insights
 
@@ -24,58 +29,6 @@ Without a key, Trivium falls back to the anonymous PageSpeed Insights API which 
 
 1. Get a key at https://developers.google.com/speed/docs/insights/v5/get-started.
 2. Add `PSI_API_KEY=...` to `api/.env`.
-
-## OAuth integrations (optional)
-
-Each integration is independent — set up only the ones you need.
-
-### Google Search Console + Google Analytics 4 + Google Ads
-
-1. Go to https://console.cloud.google.com/apis/credentials.
-2. Create an OAuth 2.0 Client ID (Web application).
-3. Add `http://localhost:3001/api/integrations/gsc/callback` and `http://localhost:3001/api/integrations/ga4/callback` to **Authorized redirect URIs**.
-4. Enable these APIs for the project: **Search Console API**, **Google Analytics Data API**, **Google Ads API**.
-5. Add to `api/.env`:
-   ```
-   GOOGLE_CLIENT_ID=...
-   GOOGLE_CLIENT_SECRET=...
-   GOOGLE_REDIRECT_URI=http://localhost:3001/api/integrations/gsc/callback
-   GOOGLE_GA4_REDIRECT_URI=http://localhost:3001/api/integrations/ga4/callback
-   ```
-6. Restart the API. From the app, open the Integrations panel and connect.
-
-### Adobe Analytics
-
-1. Create an integration at https://developer.adobe.com/console.
-2. Add the redirect URI `http://localhost:3001/api/integrations/adobe-analytics/callback`.
-3. Add to `api/.env`:
-   ```
-   ADOBE_CLIENT_ID=...
-   ADOBE_CLIENT_SECRET=...
-   ADOBE_REDIRECT_URI=http://localhost:3001/api/integrations/adobe-analytics/callback
-   ```
-
-### Meta Business
-
-1. Create an app at https://developers.facebook.com/apps.
-2. Add Facebook Login and set the OAuth redirect URI to `http://localhost:3001/api/integrations/meta/callback`.
-3. Request the `pages_read_engagement` and `read_insights` permissions.
-4. Add to `api/.env`:
-   ```
-   META_APP_ID=...
-   META_APP_SECRET=...
-   META_REDIRECT_URI=http://localhost:3001/api/integrations/meta/callback
-   ```
-
-## Token encryption
-
-OAuth tokens are persisted to local JSON files (`api/.dev-gsc-tokens.json`, etc., all gitignored). To encrypt them at rest, generate a 32-byte hex key:
-
-```bash
-node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-```
-
-Add it to `api/.env` as `INTEGRATION_ENCRYPTION_KEY=`. Required only if you use integrations and want encryption at rest.
 
 ## Tuning scan limits
 

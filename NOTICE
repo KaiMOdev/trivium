@@ -17,7 +17,6 @@ This product redistributes or depends on the following third-party software:
 
   - Express, Cheerio, Helmet, dotenv, express-rate-limit — MIT
   - React, React DOM, Vite — MIT
-  - googleapis — Apache-2.0
   - jspdf, marked — MIT
   - Jest, Vitest, Testing Library — MIT
 

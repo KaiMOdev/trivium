@@ -12,7 +12,7 @@ trivium/
 │   │   ├── components/               UI components (CheckRow, ScoreRing, etc.)
 │   │   ├── config/                   theme.js, faq.js, explanations.js
 │   │   ├── contexts/AuthContext.jsx  OSS stub (no auth)
-│   │   ├── hooks/                    useScan, useAISuggestions, useAISummary, ...
+│   │   ├── hooks/                    useScan, useScanHistory, etc.
 │   │   └── utils/                    generatePDF, recommendations
 │   └── index.html
 ├── api/                              Express backend (CommonJS)
@@ -25,7 +25,6 @@ trivium/
 │   │   └── performance.js            PageSpeed Insights wrapper
 │   ├── config/
 │   │   ├── tiers.js                  Env-driven scan limits
-│   │   ├── ai.js                     AI model + prompts
 │   │   └── checkApplicability.js     Per-page-type skip map
 │   ├── middleware/
 │   │   ├── auth.js                   No-op stubs (no auth in OSS)
@@ -33,22 +32,15 @@ trivium/
 │   │   └── rateLimit.js              Express-rate-limit wrappers
 │   ├── plugins/
 │   │   ├── detect.js                 CMS detection
-│   │   ├── wordpress.js              WP REST API analysis
+│   │   ├── wordpress.js              WP REST API analysis (no auth needed)
 │   │   ├── shopify.js                Shopify storefront analysis
-│   │   ├── aem.js                    Adobe Experience Manager
-│   │   ├── gsc.js / ga4.js / ads.js  Google integrations (OAuth)
-│   │   ├── adobe-analytics.js        Adobe Analytics (OAuth)
-│   │   ├── meta.js                   Meta Business (OAuth)
-│   │   └── oauth-utils.js            Shared OAuth helpers
-│   ├── routes/
-│   │   └── integrations.js           OAuth flows for all integrations
+│   │   └── aem.js                    Adobe Experience Manager detection
 │   ├── utils/
 │   │   ├── pageType.js               Page-type classifier
 │   │   ├── readability.js            Flesch-Kincaid scoring
-│   │   ├── crypto.js                 Token encryption helper
 │   │   ├── debug.js                  Conditional debug logger
 │   │   └── fetch-helpers.js          checkExists, fetchTextFile
-│   └── migrations/                   Reference SQL (only used if you wire up Supabase)
+│   └── migrations/                   Reference SQL (only if you wire up persistence)
 └── ARCHITECTURE.md                   (you are here)
 ```
 
@@ -59,10 +51,9 @@ trivium/
 3. The HTML is parsed with Cheerio into a `pageData` shape: title, meta, headings, JSON-LD, images, links, visible text.
 4. `detectPageType(pageData)` classifies the page (`homepage`, `article`, `product`, `service`, `legal`, `utility`, `landing`, `faq`, `auth`, `gallery`, `support`, `generic`). The classifier is in `api/utils/pageType.js`.
 5. `runSeoChecks`, `runLlmChecks`, `runMarketingChecks` each run their suite. Page-type-aware skipping happens via `api/config/checkApplicability.js` — irrelevant checks are returned with `status: "na"` so they don't drag the score.
-6. CMS detection (`plugins/detect.js`) runs in parallel. If WordPress / Shopify / AEM is detected, the platform-specific analyzer pulls extra signals (REST API, theme files, etc.).
-7. OAuth integrations (GSC, GA4, Adobe Analytics, Meta) fetch their data if connected.
-8. Per-category weighted scores are computed (each check has a weight 1–3 based on severity).
-9. Result is returned. For `/api/scan/site` and `/api/audit/discover`, results stream as NDJSON one event per page.
+6. CMS detection (`plugins/detect.js`) runs in parallel. If WordPress / Shopify / AEM is detected, the platform-specific analyzer pulls extra signals from the public storefront / REST API — no user authentication needed.
+7. Per-category weighted scores are computed (each check has a weight 1–3 based on severity).
+8. Result is returned. For `/api/scan/site` and `/api/audit/discover`, results stream as NDJSON one event per page.
 
 ## Check data shapes
 
@@ -80,11 +71,16 @@ Status is derived from score:
 - `< 45` → fail
 - `null` or explicit `status: "na"` → not applicable (excluded from scoring)
 
-## AI features
+## What's NOT in the OSS build
 
-There are none. Every check in the open-source build is a deterministic heuristic — no third-party language model calls, no token costs, no API keys to manage.
+The open-source engine focuses on deterministic, self-contained audits. The following features belong to the commercial product at https://siteauditpro.online and are not in this repository:
 
-AI-powered features (narrative audit summary, per-check fix suggestions, page classification) live in the commercial product at https://siteauditpro.online. The commercial layer sits on top of this same engine and adds Anthropic-backed analysis.
+- **AI features** — narrative audit summaries, per-check fix suggestions, AI-driven page classification.
+- **OAuth integrations** — Google Search Console, Google Analytics 4, Google Ads, Adobe Analytics, Meta Business. These need user credential management which is hosted-product territory.
+- **Authentication, persistence, tiers** — no user accounts, no scan history database, no paywall.
+- **Marketing site** (`demo-site/`), WordPress companion plugin, Stripe billing, Sentry observability.
+
+The CMS plugins that remain (`wordpress.js`, `shopify.js`, `aem.js`) only read the public surface of the scanned site — they don't require any user credentials.
 
 ## Page-type detection
 
@@ -102,13 +98,8 @@ It's intentionally fuzzy — returning `generic` is a valid output for pages tha
 
 The open-source build has **none of these**. The frontend never talks to Supabase. The backend never writes scan results to a database. There is no user concept, no tier concept, and no paywall.
 
-The `app/src/contexts/AuthContext.jsx` and `api/middleware/auth.js` files exist as stubs because the surrounding code references them; they're no-ops in OSS. A hosted/commercial deployment that needs auth+persistence would reintroduce them outside this repo.
+The `app/src/contexts/AuthContext.jsx` and `api/middleware/auth.js` files exist as stubs because the surrounding code references them; they're no-ops in OSS. A hosted/commercial deployment that needs auth+persistence reintroduces them outside this repo.
 
-## What's intentionally not here
+## Infrastructure choices
 
-- AI / LLM features — narrative summaries, fix suggestions, page classification. These belong to the commercial product.
-- `fly.toml`, `vercel.json` — infrastructure choices are yours.
-- Marketing site (`demo-site/`) — separate from the engine.
-- WordPress companion plugin — separate codebase.
-- Stripe / billing / subscription — not part of the OSS engine.
-- Sentry / observability — bring your own.
+The repo intentionally does not ship `fly.toml`, `vercel.json`, or any other infra-as-config tied to a specific host. Trivium is a normal Node + Vite app — deploy it however you like.

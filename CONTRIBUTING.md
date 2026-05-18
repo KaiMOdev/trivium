@@ -56,9 +56,7 @@ For checks that grade incorrectly, link to authoritative documentation (Google, 
 5. Add a Jest test in `api/__tests__/`.
 6. Add explanation copy in [`app/src/config/explanations.js`](app/src/config/explanations.js) so users see context in the UI.
 
-## Adding a new integration
-
-OAuth integrations live in `api/plugins/`. Use `gsc.js` or `ga4.js` as a template. Wire it into `api/routes/integrations.js` and `api/index.js`'s scan flow. Document the env vars in [`api/.env.example`](api/.env.example) and [`SETUP.md`](SETUP.md).
+Checks must be **deterministic** — no third-party API calls, no LLM dependencies. Anything that needs external credentials or AI inference belongs in the commercial product, not this repo.
 
 ## Discussion before code
 
