@@ -1239,9 +1239,9 @@ export default function SiteAuditApp() {
                     { label: "SEO", score: seoScore, color: theme.accent, available: true },
                     { label: "AI Search", score: llmScore, color: theme.info, available: true },
                     { label: "Marketing", score: mktScore, color: theme.warning, available: true },
-                    { label: "Speed", score: perfScore, color: theme.violet, available: true },
+                    { label: "Speed", score: perfScore, color: theme.violet, available: hasPerfData, note: "Core Web Vitals unavailable — set a PSI_API_KEY to enable performance data" },
                   ].map(cat => (
-                    <div key={cat.label} style={{
+                    <div key={cat.label} title={cat.available ? undefined : cat.note} style={{
                       flex: 1, padding: "14px 16px", borderRadius: 12,
                       background: cat.available ? `${cat.color}08` : "rgba(255,255,255,0.01)",
                       border: `1px solid ${cat.available ? `${cat.color}18` : theme.cardBorder}`,
@@ -1260,7 +1260,7 @@ export default function SiteAuditApp() {
                         fontSize: 10, color: theme.textMuted, marginTop: 5,
                         fontFamily: theme.fontMono, letterSpacing: "0.04em", textTransform: "uppercase",
                       }}>
-                        {cat.label}{!cat.available && " (Pro)"}
+                        {cat.label}{!cat.available && " (n/a)"}
                       </div>
                     </div>
                   ))}

@@ -258,6 +258,7 @@ function extractMetrics(psiData) {
   opportunities.sort((a, b) => b.savingsMs - a.savingsMs);
 
   return {
+    available: true,
     score: perfScore,
     metrics,
     opportunities: opportunities.slice(0, 5),
@@ -266,8 +267,9 @@ function extractMetrics(psiData) {
 }
 
 /**
- * Run performance checks. Returns { score, metrics, opportunities, strategy }.
- * On failure, returns a degraded result with score 0 so the scan doesn't break.
+ * Run performance checks. Returns { available, score, metrics, opportunities, strategy }.
+ * On failure (e.g. PageSpeed Insights rate limit), returns `available: false` and
+ * `score: null` so the result reads as "not measured" rather than a real score of 0.
  */
 async function runPerformanceChecks(url) {
   try {
@@ -276,7 +278,8 @@ async function runPerformanceChecks(url) {
   } catch (err) {
     console.error("Performance check failed:", err.message);
     return {
-      score: 0,
+      available: false,
+      score: null,
       metrics: [],
       opportunities: [],
       strategy: "mobile",

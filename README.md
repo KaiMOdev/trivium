@@ -397,8 +397,8 @@ npm run test:app       # frontend only (Vitest)
 
 CI runs on every pull request via [`.github/workflows/test.yml`](.github/workflows/test.yml).
 
-> [!NOTE]
-> A few pre-existing tests in the SEO / LLM / marketing scoring suites are inherited from the project's prior life and may fail on threshold mismatches. These are tracked and not blocking; new contributions should not introduce new failures.
+> [!TIP]
+> The full suite — backend (Jest) and frontend (Vitest) — runs green on `main`. New contributions should keep it that way.
 
 ## Deployment
 
