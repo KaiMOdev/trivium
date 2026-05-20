@@ -28,6 +28,20 @@
 [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![Awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg)](https://github.com/KaiMOdev/trivium)
 
+<p align="center">
+  <a href="https://siteauditpro.online/scan">
+    <img src="https://img.shields.io/badge/▶_Try_live_demo-no_signup-00F5D4?style=for-the-badge&labelColor=0a0d10" alt="Try live demo">
+  </a>
+  &nbsp;
+  <a href="https://github.com/KaiMOdev/trivium/releases/latest">
+    <img src="https://img.shields.io/badge/Latest_release-v1.0.0-00F5D4?style=for-the-badge&labelColor=0a0d10" alt="Latest release">
+  </a>
+  &nbsp;
+  <a href="https://github.com/KaiMOdev/trivium#quick-start">
+    <img src="https://img.shields.io/badge/Self_host-2_minutes-paper?style=for-the-badge&labelColor=0a0d10&color=ece6d5" alt="Self host">
+  </a>
+</p>
+
 🌐 **[Hosted version](https://siteauditpro.online)** · 📚 **[Architecture](ARCHITECTURE.md)** · ⚙️ **[Setup](SETUP.md)** · 🤝 **[Contributing](CONTRIBUTING.md)** · 🏢 **[Lams IT Solutions](https://lamsitsolutions.be)**
 
 </div>
@@ -35,13 +49,15 @@
 ---
 
 > [!TIP]
-> Try Trivium without installing anything — the hosted version at **[siteauditpro.online](https://siteauditpro.online)** runs the same engine plus AI-powered summaries and OAuth integrations.
+> **Try it in 10 seconds — no install, no signup, no email.**
+> The hosted engine at **[siteauditpro.online/scan](https://siteauditpro.online/scan)** runs this exact codebase. Paste a URL, get a report. Account creation is only needed for scan history, scheduled monitoring, and OAuth integrations (GSC, GA4, Adobe Analytics, Meta).
 
 ---
 
 ## Table of Contents
 
 - [About](#about)
+- [Demo](#demo)
 - [Why Trivium?](#why-trivium)
 - [How It Compares](#how-it-compares)
 - [The Three Pillars](#the-three-pillars)
@@ -75,6 +91,12 @@
 Trivium is a self-contained website audit engine designed for the AI-search era. It grades any URL against three orthogonal axes — technical SEO, LLM-readiness, and marketing effectiveness — and produces a structured, page-type-aware report with no signup and no external API calls.
 
 The name comes from the classical [trivium](https://en.wikipedia.org/wiki/Trivium): grammar, logic, and rhetoric. Each pillar maps to one dimension of how a webpage performs in the modern discovery landscape.
+
+## Demo
+
+🟢 **[siteauditpro.online/scan](https://siteauditpro.online/scan)** — no signup, no email, no API key. The hosted version runs this exact engine; AI summaries and OAuth integrations are the only paid additions.
+
+Prefer to self-host? See [Quick Start](#quick-start) — `git clone && npm install && npm run dev` and you're scanning in two minutes.
 
 ## Why Trivium?
 
