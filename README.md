@@ -139,10 +139,10 @@ Value proposition specificity · CTA effectiveness · CTA copy quality · CTA-ab
 
 ## Demo
 
-https://github.com/KaiMOdev/trivium/raw/main/media/trivium_promo_stable_silent.mp4
+![Trivium — open-source website audits for the AI-search era](media/trivium_demo.gif)
 
 > [!NOTE]
-> If the video does not play above, [download or view it directly](media/trivium_promo_stable_silent.mp4).
+> Prefer the full promo video? [Watch trivium_promo_stable_silent.mp4](media/trivium_promo_stable_silent.mp4) — GitHub serves repo-hosted videos as a download rather than an inline player.
 
 ## Quick Start
 
