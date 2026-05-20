@@ -42,7 +42,7 @@
 - [How It Compares](#how-it-compares)
 - [The Three Pillars](#the-three-pillars)
 - [Features](#features)
-- [Screenshot](#screenshot)
+- [Demo](#demo)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -137,26 +137,12 @@ Value proposition specificity · CTA effectiveness · CTA copy quality · CTA-ab
 - ✅ **Polite crawler** — Respects `robots.txt`, configurable delay between requests, SSRF protection for fetched URLs.
 - ✅ **Zero-config dev** — `npm install && npm run dev` and you're scanning.
 
-## Screenshot
+## Demo
+
+https://github.com/KaiMOdev/trivium/raw/main/media/trivium_promo_stable_silent.mp4
 
 > [!NOTE]
-> Replace this section with an actual screenshot of the Trivium UI. Recommended: a hero-card showing the three pillar scores side-by-side after a real scan.
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│  Trivium                              [Scan] [Report] [...]  │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│   ◯ 84/100        🔧 SEO        91 ▰▰▰▰▰▰▰▰▰▱   pass         │
-│   Advanced        🤖 LLM        72 ▰▰▰▰▰▰▰▱▱▱   warn         │
-│                   🎯 Marketing  87 ▰▰▰▰▰▰▰▰▱▱   pass         │
-│                   ⚡ Perf       89 ▰▰▰▰▰▰▰▰▱▱   pass         │
-│                                                              │
-│   Title Tag  pass · 58 chars · keyword-front-loaded          │
-│   FAQ Schema fail · No FAQPage structured data detected      │
-│   ...                                                        │
-└──────────────────────────────────────────────────────────────┘
-```
+> If the video does not play above, [download or view it directly](media/trivium_promo_stable_silent.mp4).
 
 ## Quick Start
 
