@@ -14,7 +14,6 @@ import SeverityGroupedList from "./components/SeverityGroupedList";
 import PerformanceMetricCard from "./components/PerformanceMetricCard";
 import useScan from "./hooks/useScan";
 import useScanHistory from "./hooks/useScanHistory";
-import useAISuggestions from "./hooks/useAISuggestions";
 import useAISummary from "./hooks/useAISummary";
 import useIsMobile from "./hooks/useIsMobile";
 import AISummaryCard from "./components/AISummaryCard";
@@ -170,7 +169,6 @@ export default function SiteAuditApp() {
   const isMobile = useIsMobile();
   const { scanning, scanProgress, scanStage, stages, results, comparisonResults, scanError, startScan, siteResults, scanMode, startSiteScan, cancelScan, reset } = useScan();
   const scanHistory = useScanHistory();
-  const aiState = useAISuggestions(session);
   const summaryState = useAISummary(session);
 
   const features = TIER_FEATURES[tier];
@@ -389,17 +387,6 @@ export default function SiteAuditApp() {
     startSiteScan(url, tier, activeConnections, { isAdmin, pageLimit });
   };
 
-  const handleAIFix = (check) => {
-    if (results) {
-      aiState.fetchSuggestion(check, {
-        title: results.meta?.title || "",
-        url: results.url || "",
-        platform: results.platform?.name || null,
-        industry: profileData?.industry || null,
-      }, results.classification || null);
-    }
-  };
-
   const handleGenerateSummary = () => {
     if (results) {
       summaryState.fetchSummary(
@@ -453,8 +440,8 @@ export default function SiteAuditApp() {
 
       {showPricing && <Suspense fallback={null}><PricingModal currentTier={tier} onClose={() => setShowPricing(false)} onSelect={setTier} /></Suspense>}
 
-      {/* AI error toast */}
-      {(aiState.error || summaryState.error) && (
+      {/* Summary error toast */}
+      {summaryState.error && (
         <div style={{
           position: "fixed", bottom: 24, right: 24, zIndex: 9999,
           padding: "12px 20px", borderRadius: 10,
@@ -463,8 +450,8 @@ export default function SiteAuditApp() {
           maxWidth: 360, boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
           display: "flex", alignItems: "center", gap: 10,
         }}>
-          <span style={{ flex: 1 }}>{aiState.error || summaryState.error}</span>
-          <button onClick={() => { aiState.clearError(); summaryState.clearError(); }} style={{
+          <span style={{ flex: 1 }}>{summaryState.error}</span>
+          <button onClick={() => summaryState.clearError()} style={{
             background: "none", border: "none", color: theme.danger,
             cursor: "pointer", fontSize: 16, padding: 0, lineHeight: 1,
           }}>×</button>
@@ -1498,11 +1485,7 @@ export default function SiteAuditApp() {
                     items={results.seo.slice(0, visibleSeoChecks)}
                     gateFails={tier === "free"}
                     renderItem={(item, key, index, blurred) => (
-                      <CheckRow key={key} item={item} index={index} blurred={blurred}
-                        onAIFix={handleAIFix} userTier={tier}
-                        onUpgrade={() => setShowPricing(true)}
-                        aiLoading={aiState.loading === item.label}
-                        aiResult={aiState.results[item.label] || null} />
+                      <CheckRow key={key} item={item} index={index} blurred={blurred} />
                     )}
                   />
                   {tier === "free" && results.seo.slice(visibleSeoChecks).map((item, i) => (
@@ -1542,11 +1525,7 @@ export default function SiteAuditApp() {
                     gateFails={tier === "free"}
                     wrapItemsStyle={{ display: "grid", gap: 10, padding: "0 4px" }}
                     renderItem={(item, key, _index, blurred) => (
-                      <ScoreCard key={key} item={item} blurred={blurred}
-                        onAIFix={handleAIFix} userTier={tier}
-                        onUpgrade={() => setShowPricing(true)}
-                        aiLoading={aiState.loading === item.label}
-                        aiResult={aiState.results[item.label] || null} />
+                      <ScoreCard key={key} item={item} blurred={blurred} />
                     )}
                   />
                   {hiddenLlmCount > 0 && results.llm.slice(visibleLlmChecks).map((item, i) => (
@@ -1578,11 +1557,7 @@ export default function SiteAuditApp() {
                     gateFails={tier === "free"}
                     wrapItemsStyle={{ display: "grid", gap: 10, padding: "0 4px" }}
                     renderItem={(item, key, _index, blurred) => (
-                      <ScoreCard key={key} item={item} blurred={blurred}
-                        onAIFix={handleAIFix} userTier={tier}
-                        onUpgrade={() => setShowPricing(true)}
-                        aiLoading={aiState.loading === item.label}
-                        aiResult={aiState.results[item.label] || null} />
+                      <ScoreCard key={key} item={item} blurred={blurred} />
                     )}
                   />
                   {hiddenMktCount > 0 && results.marketing.slice(visibleMktChecks).map((item, i) => (
