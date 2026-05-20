@@ -29,8 +29,8 @@
 [![Awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg)](https://github.com/KaiMOdev/trivium)
 
 <p align="center">
-  <a href="https://siteauditpro.online/scan">
-    <img src="https://img.shields.io/badge/▶_Try_live_demo-no_signup-00F5D4?style=for-the-badge&labelColor=0a0d10" alt="Try live demo">
+  <a href="https://app.siteauditpro.online">
+    <img src="https://img.shields.io/badge/Hosted_app-free_to_start-00F5D4?style=for-the-badge&labelColor=0a0d10" alt="Hosted app">
   </a>
   &nbsp;
   <a href="https://github.com/KaiMOdev/trivium/releases/latest">
@@ -49,8 +49,8 @@
 ---
 
 > [!TIP]
-> **Try it in 10 seconds — no install, no signup, no email.**
-> The hosted engine at **[siteauditpro.online/scan](https://siteauditpro.online/scan)** runs this exact codebase. Paste a URL, get a report. Account creation is only needed for scan history, scheduled monitoring, and OAuth integrations (GSC, GA4, Adobe Analytics, Meta).
+> **Run it locally in 2 minutes — no account, no API keys.**
+> `git clone` → `npm install` → `npm run dev` and you're scanning (see [Quick Start](#quick-start)). Prefer not to self-host? **[app.siteauditpro.online](https://app.siteauditpro.online)** runs this exact engine — free to start (account required, 3 scans/month), with AI summaries and OAuth integrations as paid add-ons.
 
 ---
 
@@ -94,9 +94,9 @@ The name comes from the classical [trivium](https://en.wikipedia.org/wiki/Triviu
 
 ## Demo
 
-🟢 **[siteauditpro.online/scan](https://siteauditpro.online/scan)** — no signup, no email, no API key. The hosted version runs this exact engine; AI summaries and OAuth integrations are the only paid additions.
+**Self-host it — the zero-account path.** No signup, no email, no API keys: `git clone && npm install && npm run dev` and you're scanning in two minutes. See [Quick Start](#quick-start).
 
-Prefer to self-host? See [Quick Start](#quick-start) — `git clone && npm install && npm run dev` and you're scanning in two minutes.
+Prefer a hosted option? **[app.siteauditpro.online](https://app.siteauditpro.online)** runs this exact engine — free to start (account required, 3 scans/month). AI summaries and OAuth integrations are the paid additions.
 
 ## Why Trivium?
 
