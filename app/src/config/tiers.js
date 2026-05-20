@@ -20,10 +20,25 @@ export const TIERS = {
 
 export const tierOrder = ["free", "pro", "premium"];
 
+// Every check is visible and every limit is permissive in the OSS build.
+// Keys must cover every `features.*` lookup in the UI, or reads return
+// `undefined` (e.g. `Math.min(undefined, n)` → NaN → empty check lists).
+const OSS_FEATURES = {
+  pageLimit: 200,
+  aiEnabled: false,
+  exportPdf: true,
+  competitors: 10,
+  llmChecks: Infinity,
+  marketingChecks: Infinity,
+  scansPerMonth: -1,
+  pages: "Homepage",
+  marketing: true,
+};
+
 export const TIER_FEATURES = {
-  free:    { pageLimit: 200, aiEnabled: false, exportPdf: true, competitors: 10 },
-  pro:     { pageLimit: 200, aiEnabled: false, exportPdf: true, competitors: 10 },
-  premium: { pageLimit: 200, aiEnabled: false, exportPdf: true, competitors: 10 },
+  free: OSS_FEATURES,
+  pro: OSS_FEATURES,
+  premium: OSS_FEATURES,
 };
 
 // In OSS, every comparison succeeds: the user is "premium-equivalent".
