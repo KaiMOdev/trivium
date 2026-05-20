@@ -4,6 +4,10 @@
 
 **A full-stack website audit — technical SEO, LLM-readiness, and marketing effectiveness — in a single deterministic engine.**
 
+![Trivium — open-source website audits for the AI-search era](media/trivium_demo.gif)
+
+▶ **[Watch the full promo video](media/trivium_promo_stable_silent.mp4)**
+
 [![Powered by SiteAuditPro](https://img.shields.io/badge/Powered_by-SiteAuditPro-00F5D4?labelColor=06080C)](https://siteauditpro.online)
 [![Production-tested since 2025](https://img.shields.io/badge/Production_tested_since-2025-success)](https://siteauditpro.online)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL_3.0-blue.svg)](LICENSE)
@@ -42,7 +46,6 @@
 - [How It Compares](#how-it-compares)
 - [The Three Pillars](#the-three-pillars)
 - [Features](#features)
-- [Demo](#demo)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -136,13 +139,6 @@ Value proposition specificity · CTA effectiveness · CTA copy quality · CTA-ab
 - ✅ **Site-wide pattern detection** — Surfaces issues that affect more than one page so you can fix them at the source.
 - ✅ **Polite crawler** — Respects `robots.txt`, configurable delay between requests, SSRF protection for fetched URLs.
 - ✅ **Zero-config dev** — `npm install && npm run dev` and you're scanning.
-
-## Demo
-
-![Trivium — open-source website audits for the AI-search era](media/trivium_demo.gif)
-
-> [!NOTE]
-> Prefer the full promo video? [Watch trivium_promo_stable_silent.mp4](media/trivium_promo_stable_silent.mp4) — GitHub serves repo-hosted videos as a download rather than an inline player.
 
 ## Quick Start
 
