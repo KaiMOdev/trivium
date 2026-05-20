@@ -11,5 +11,6 @@ export default function useScanHistory() {
     totalPages: 0,
     setPage: () => {},
     refresh: () => {},
+    recordScan: () => {},
   };
 }
