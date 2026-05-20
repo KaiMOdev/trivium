@@ -2,12 +2,10 @@
 // Copyright (C) 2026 Lams IT Solutions
 import { useState, useMemo } from "react";
 import { theme } from "../config/theme";
-import { tierAtLeast } from "../config/tiers";
 import { generateRecommendations, computeInsightsSummary } from "../utils/recommendations";
 import RecommendationCard from "./RecommendationCard";
 import SectionHeader from "./SectionHeader";
 import UpgradeBanner from "./UpgradeBanner";
-import AISummaryCard from "./AISummaryCard";
 
 const filterOptions = [
   { id: "all", label: "All", icon: "◉" },
@@ -20,9 +18,8 @@ const filterOptions = [
   { id: "wordpress", label: "WordPress", icon: "◉" },
 ];
 
-export default function InsightsPanel({ results, scores, tier, onGenerateSummary, summaryLoading, summaryData, summaryError, userTier, onUpgrade, industry }) {
+export default function InsightsPanel({ results, scores, tier }) {
   const [filter, setFilter] = useState("all");
-  const [summaryOpen, setSummaryOpen] = useState(false);
 
   const recommendations = useMemo(
     () => generateRecommendations(results, tier),
@@ -52,80 +49,6 @@ export default function InsightsPanel({ results, scores, tier, onGenerateSummary
 
   return (
     <div>
-      {/* AI Summary — collapsible */}
-      <div style={{
-        marginBottom: 22,
-        background: theme.surface,
-        borderRadius: 14,
-        border: `1px solid ${theme.cardBorder}`,
-        overflow: "hidden",
-      }}>
-        <div
-          onClick={() => { if (summaryData) setSummaryOpen(o => !o); }}
-          style={{
-            padding: "14px 20px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            cursor: summaryData ? "pointer" : "default",
-          }}
-        >
-          <div style={{
-            display: "flex", alignItems: "center", gap: 8,
-          }}>
-            {summaryData && (
-              <span style={{
-                fontSize: 10, color: theme.textDim,
-                transition: "transform 0.2s",
-                transform: summaryOpen ? "rotate(90deg)" : "rotate(0deg)",
-              }}>▶</span>
-            )}
-            <span style={{ color: theme.violet, fontSize: 14 }}>✦</span>
-            <span style={{
-              fontSize: 13, fontWeight: 600, color: theme.text,
-              fontFamily: theme.fontBody,
-            }}>AI Audit Summary</span>
-          </div>
-          {!summaryData && !summaryLoading && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (!userTier || userTier === "free") {
-                  onUpgrade?.();
-                } else {
-                  setSummaryOpen(true);
-                  onGenerateSummary?.();
-                }
-              }}
-              style={{
-                padding: "5px 14px",
-                borderRadius: 6,
-                border: `1px solid ${(!userTier || userTier === "free") ? theme.cardBorder : theme.violet}44`,
-                background: (!userTier || userTier === "free") ? "transparent" : theme.violetGlow,
-                color: (!userTier || userTier === "free") ? theme.textDim : theme.violet,
-                fontSize: 11,
-                fontWeight: 600,
-                fontFamily: theme.fontMono,
-                cursor: "pointer",
-              }}
-            >✦ Generate</button>
-          )}
-        </div>
-        {(summaryOpen || summaryLoading) && (summaryData || summaryLoading || summaryError) && (
-          <div style={{ padding: "0 20px 20px" }}>
-            <AISummaryCard
-              summary={summaryData}
-              loading={summaryLoading}
-              error={summaryError}
-              onGenerate={onGenerateSummary}
-              userTier={userTier}
-              onUpgrade={onUpgrade}
-              industry={industry}
-            />
-          </div>
-        )}
-      </div>
-
       {/* Summary grid */}
       <div className="sap-insights-grid" style={{
         display: "grid",
