@@ -1,0 +1,12 @@
+# Code owners for Trivium
+# https://docs.github.com/articles/about-code-owners
+#
+# Owners listed here are automatically requested for review when a pull
+# request touches a matching path. To make that review *required* before
+# merge, enable "Require review from Code Owners" in branch protection
+# for `main` (Settings -> Branches).
+
+# README and hero / branding assets.
+# Guards against unrelated PRs silently swapping the hero (see PR #6).
+/README.md    @KaiMOdev
+/media/       @KaiMOdev
