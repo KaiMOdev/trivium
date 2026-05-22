@@ -4,7 +4,7 @@
 
 **A full-stack website audit — technical SEO, LLM-readiness, and marketing effectiveness — in a single deterministic engine.**
 
-![Trivium — open-source website audits for the AI-search era](media/trivium_demo.gif)
+![Trivium — open-source website audits for the AI-search era](media/siteauditpro_real_screenshots_slow.gif)
 
 ▶ **[Watch the full promo video](media/trivium_promo_stable_silent.mp4)**
 
